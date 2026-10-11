@@ -65,6 +65,27 @@ DIGESTS = [
 MD = markdown.Markdown(extensions=["tables", "fenced_code", "sane_lists", "toc"],
                         extension_configs={"toc": {"permalink": False}})
 
+def header_html(root):
+    return f"""<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="{root}index.html">
+      <span class="badge">🎖️</span>
+      <span>אתר הידע<br><small>קורס קציני הסברה 2026</small></span>
+    </a>
+    <nav class="main-nav">
+      <a href="{root}index.html">בית</a>
+      <a href="{root}quick-ref.html">מדריך מהיר</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
+    <div class="search-box">
+      <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu"></nav>"""
+
+
 TOPIC_TEMPLATE = """<!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -75,22 +96,7 @@ TOPIC_TEMPLATE = """<!doctype html>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body data-root="../">
-<header class="site-header">
-  <div class="container bar">
-    <a class="brand" href="../index.html">
-      <span class="badge">🎖️</span>
-      <span>אתר הידע<br><small>קורס קציני הסברה 2026</small></span>
-    </a>
-    <nav class="main-nav">
-      <a href="../index.html">בית</a>
-      <a href="../quick-ref.html">מדריך מהיר</a>
-    </nav>
-    <div class="search-box">
-      <input id="site-search" type="text" placeholder="חיפוש באתר... (למשל: ממ\\"ד, מדרג כתום, קה\\"א)" autocomplete="off">
-      <div id="search-results"></div>
-    </div>
-  </div>
-</header>
+{header}
 
 <main class="container">
   <div class="breadcrumb"><a href="../index.html">בית</a> ← <a href="../index.html#cat-{cat_id}">{cat_title}</a> ← {title}</div>
@@ -107,6 +113,9 @@ TOPIC_TEMPLATE = """<!doctype html>
       <div class="topic-meta">
         <span class="pill">{cat_icon} {cat_title}</span>
         <span class="pill orange">{source_pages} שקפי מקור</span>
+      </div>
+      <div class="page-actions">
+        <button data-print>🖨️ הדפס / שמור כ-PDF</button>
       </div>
       {body}
 
@@ -127,6 +136,10 @@ TOPIC_TEMPLATE = """<!doctype html>
 </body>
 </html>
 """
+
+
+def wrap_tables(html_body):
+    return re.sub(r"(<table>.*?</table>)", r'<div class="table-scroll">\1</div>', html_body, flags=re.S)
 
 
 def flatten_toc(tokens):
@@ -239,9 +252,10 @@ def build():
             cat_icon=cat["icon"],
             source_pages=d["source_pages"],
             toc="\n        ".join(toc_html_items),
-            body=html_body,
+            body=wrap_tables(html_body),
             prev_link=prev_link,
             next_link=next_link,
+            header=header_html("../"),
         )
         out_path = os.path.join(TOPICS_OUT, f"{d['id']}.html")
         with open(out_path, "w", encoding="utf-8") as f:
@@ -294,22 +308,7 @@ INDEX_TEMPLATE = """<!doctype html>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body data-root="./">
-<header class="site-header">
-  <div class="container bar">
-    <a class="brand" href="index.html">
-      <span class="badge">🎖️</span>
-      <span>אתר הידע<br><small>קורס קציני הסברה 2026</small></span>
-    </a>
-    <nav class="main-nav">
-      <a href="index.html" class="active">בית</a>
-      <a href="quick-ref.html">מדריך מהיר</a>
-    </nav>
-    <div class="search-box">
-      <input id="site-search" type="text" placeholder="חיפוש באתר... (למשל: ממ\\"ד, מדרג כתום, קה\\"א)" autocomplete="off">
-      <div id="search-results"></div>
-    </div>
-  </div>
-</header>
+{header}
 
 <div class="hero">
   <div class="container">
@@ -387,11 +386,20 @@ def write_index(categories, cat_docs, n_docs):
                                   desc=d["short_desc"], pages=d["source_pages"])
             for d in docs
         )
+        body_id = f"archive-body-{c['id']}"
         cat_blocks.append(f"""
-  <h2 class="section-title" id="cat-{c['id']}"><span class="n">{idx}</span>{c['icon']} {c['title']}</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">{c['desc']}</p>
-  <div class="cards-grid">
-    {cards}
+  <div class="archive-group" id="cat-{c['id']}">
+    <button class="archive-toggle" aria-expanded="false" aria-controls="{body_id}">
+      <span class="n" style="background:var(--navy);">{idx}</span>
+      <span>{c['icon']} {c['title']}</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="archive-body" id="{body_id}">
+      <p style="color:var(--text-muted);margin-top:0;max-width:760px;">{c['desc']}</p>
+      <div class="cards-grid">
+        {cards}
+      </div>
+    </div>
   </div>
 """)
 
@@ -405,6 +413,7 @@ def write_index(categories, cat_docs, n_docs):
         n_sections=search_index_len,
         digest_cards=digest_cards,
         categories="\n".join(cat_blocks),
+        header=header_html("./"),
     )
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(html)

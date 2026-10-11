@@ -10,20 +10,22 @@
 <body data-root="./">
 <header class="site-header">
   <div class="container bar">
-    <a class="brand" href="index.html">
+    <a class="brand" href="./index.html">
       <span class="badge">🎖️</span>
       <span>אתר הידע<br><small>קורס קציני הסברה 2026</small></span>
     </a>
     <nav class="main-nav">
-      <a href="index.html" class="active">בית</a>
-      <a href="quick-ref.html">מדריך מהיר</a>
+      <a href="./index.html">בית</a>
+      <a href="./quick-ref.html">מדריך מהיר</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
     <div class="search-box">
-      <input id="site-search" type="text" placeholder="חיפוש באתר... (למשל: ממ\"ד, מדרג כתום, קה\"א)" autocomplete="off">
+      <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
       <div id="search-results"></div>
     </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobile-menu"></nav>
 
 <div class="hero">
   <div class="container">
@@ -91,10 +93,16 @@
   <h2 class="section-title" id="archive" style="margin-top:56px;">📚 ארכיון מצגות המקור</h2>
   <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כל 14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, בדיקת ציטוט מדויק או הכנת שיעור. אלו אינן חומר הלימוד המומלץ לקריאה ראשונה - לכך נועדו התמציות למעלה.</p>
   
-  <h2 class="section-title" id="cat-role"><span class="n">1</span>🎖️ תפקיד קצין ההסברה</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">מי קצין ההסברה, מה תפקידו בכל דרג, וכיצד הוא פועל מול הרשות המקומית.</p>
-  <div class="cards-grid">
-    <a class="card-link-wrap" href="topics/09.html" style="text-decoration:none;color:inherit;">
+  <div class="archive-group" id="cat-role">
+    <button class="archive-toggle" aria-expanded="false" aria-controls="archive-body-role">
+      <span class="n" style="background:var(--navy);">1</span>
+      <span>🎖️ תפקיד קצין ההסברה</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="archive-body" id="archive-body-role">
+      <p style="color:var(--text-muted);margin-top:0;max-width:760px;">מי קצין ההסברה, מה תפקידו בכל דרג, וכיצד הוא פועל מול הרשות המקומית.</p>
+      <div class="cards-grid">
+        <a class="card-link-wrap" href="topics/09.html" style="text-decoration:none;color:inherit;">
 <div class="card" style="opacity:0.88;">
   <div class="icon">🧭</div>
   <h3 style="font-size:0.96rem;">מערך ההסברה פיקוד העורף – ייעוד, מבנה, ממשקים ותפיסת הפעלה</h3>
@@ -112,13 +120,21 @@
   <span class="card-link">פתח מקור ←</span>
 </div>
 </a>
+      </div>
+    </div>
   </div>
 
 
-  <h2 class="section-title" id="cat-theory"><span class="n">2</span>📚 עקרונות ותורת ההסברה</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">מהי הסברה, המודלים המרכזיים, עקרונות היסוד ולקחים מהשטח.</p>
-  <div class="cards-grid">
-    <a class="card-link-wrap" href="topics/03.html" style="text-decoration:none;color:inherit;">
+  <div class="archive-group" id="cat-theory">
+    <button class="archive-toggle" aria-expanded="false" aria-controls="archive-body-theory">
+      <span class="n" style="background:var(--navy);">2</span>
+      <span>📚 עקרונות ותורת ההסברה</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="archive-body" id="archive-body-theory">
+      <p style="color:var(--text-muted);margin-top:0;max-width:760px;">מהי הסברה, המודלים המרכזיים, עקרונות היסוד ולקחים מהשטח.</p>
+      <div class="cards-grid">
+        <a class="card-link-wrap" href="topics/03.html" style="text-decoration:none;color:inherit;">
 <div class="card" style="opacity:0.88;">
   <div class="icon">📣</div>
   <h3 style="font-size:0.96rem;">הסברה בחירום – אתגרים והנעה לפעולה</h3>
@@ -154,13 +170,21 @@
   <span class="card-link">פתח מקור ←</span>
 </div>
 </a>
+      </div>
+    </div>
   </div>
 
 
-  <h2 class="section-title" id="cat-guidelines"><span class="n">3</span>🛡️ הנחיות מצילות חיים ומדיניות ההתגוננות</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">ההבדל בין הנחיה מצילת חיים למדיניות התגוננות, מדרגי המדיניות וההגדרות המחייבות.</p>
-  <div class="cards-grid">
-    <a class="card-link-wrap" href="topics/02.html" style="text-decoration:none;color:inherit;">
+  <div class="archive-group" id="cat-guidelines">
+    <button class="archive-toggle" aria-expanded="false" aria-controls="archive-body-guidelines">
+      <span class="n" style="background:var(--navy);">3</span>
+      <span>🛡️ הנחיות מצילות חיים ומדיניות ההתגוננות</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="archive-body" id="archive-body-guidelines">
+      <p style="color:var(--text-muted);margin-top:0;max-width:760px;">ההבדל בין הנחיה מצילת חיים למדיניות התגוננות, מדרגי המדיניות וההגדרות המחייבות.</p>
+      <div class="cards-grid">
+        <a class="card-link-wrap" href="topics/02.html" style="text-decoration:none;color:inherit;">
 <div class="card" style="opacity:0.88;">
   <div class="icon">🚨</div>
   <h3 style="font-size:0.96rem;">הנחיות מצילות חיים</h3>
@@ -187,13 +211,21 @@
   <span class="card-link">פתח מקור ←</span>
 </div>
 </a>
+      </div>
+    </div>
   </div>
 
 
-  <h2 class="section-title" id="cat-authority"><span class="n">4</span>🏛️ הרשות המקומית ומטה החירום</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">מבנה הרשות המקומית, המכלולים, ומכלול המידע לציבור.</p>
-  <div class="cards-grid">
-    <a class="card-link-wrap" href="topics/06.html" style="text-decoration:none;color:inherit;">
+  <div class="archive-group" id="cat-authority">
+    <button class="archive-toggle" aria-expanded="false" aria-controls="archive-body-authority">
+      <span class="n" style="background:var(--navy);">4</span>
+      <span>🏛️ הרשות המקומית ומטה החירום</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="archive-body" id="archive-body-authority">
+      <p style="color:var(--text-muted);margin-top:0;max-width:760px;">מבנה הרשות המקומית, המכלולים, ומכלול המידע לציבור.</p>
+      <div class="cards-grid">
+        <a class="card-link-wrap" href="topics/06.html" style="text-decoration:none;color:inherit;">
 <div class="card" style="opacity:0.88;">
   <div class="icon">🏛️</div>
   <h3 style="font-size:0.96rem;">מבנה והכנת הרשות המקומית לחירום</h3>
@@ -211,13 +243,21 @@
   <span class="card-link">פתח מקור ←</span>
 </div>
 </a>
+      </div>
+    </div>
   </div>
 
 
-  <h2 class="section-title" id="cat-population"><span class="n">5</span>🧰 מערך האוכלוסייה, כלים ופלטפורמות</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">מבנה מערך האוכלוסייה בפיקוד העורף, הקה"א, והכלים הטכנולוגיים העומדים לרשות ההסברה.</p>
-  <div class="cards-grid">
-    <a class="card-link-wrap" href="topics/05.html" style="text-decoration:none;color:inherit;">
+  <div class="archive-group" id="cat-population">
+    <button class="archive-toggle" aria-expanded="false" aria-controls="archive-body-population">
+      <span class="n" style="background:var(--navy);">5</span>
+      <span>🧰 מערך האוכלוסייה, כלים ופלטפורמות</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="archive-body" id="archive-body-population">
+      <p style="color:var(--text-muted);margin-top:0;max-width:760px;">מבנה מערך האוכלוסייה בפיקוד העורף, הקה"א, והכלים הטכנולוגיים העומדים לרשות ההסברה.</p>
+      <div class="cards-grid">
+        <a class="card-link-wrap" href="topics/05.html" style="text-decoration:none;color:inherit;">
 <div class="card" style="opacity:0.88;">
   <div class="icon">🧩</div>
   <h3 style="font-size:0.96rem;">לבנת אוכלוסייה – מחלקת אוכלוסייה, פיקוד העורף</h3>
@@ -244,6 +284,8 @@
   <span class="card-link">פתח מקור ←</span>
 </div>
 </a>
+      </div>
+    </div>
   </div>
 
 </main>

@@ -18,12 +18,14 @@
       <a href="../index.html">בית</a>
       <a href="../quick-ref.html">מדריך מהיר</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
     <div class="search-box">
-      <input id="site-search" type="text" placeholder="חיפוש באתר... (למשל: ממ\"ד, מדרג כתום, קה\"א)" autocomplete="off">
+      <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
       <div id="search-results"></div>
     </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobile-menu"></nav>
 
 <main class="container">
   <div class="breadcrumb"><a href="../index.html">בית</a> ← <a href="../index.html#cat-theory">עקרונות ותורת ההסברה</a> ← הסברה בחירום – אתגרים והנעה לפעולה</div>
@@ -75,6 +77,9 @@
         <span class="pill">📚 עקרונות ותורת ההסברה</span>
         <span class="pill orange">44 שקפי מקור</span>
       </div>
+      <div class="page-actions">
+        <button data-print>🖨️ הדפס / שמור כ-PDF</button>
+      </div>
       <h1 id="_1">הסברה בחירום – אתגרים והנעה לפעולה</h1>
 <p><strong>מקור:</strong> סא"ל במיל' שירן שמחי | בלמ"ס</p>
 <p>מצגת הדרכה מקצועית המיועדת לעסוק בהסברה לאוכלוסייה בזמן חירום – הגדרות יסוד, תשתיות, אתגרים ומודל מובנה להנעה לפעולה, לרבות דוגמאות מהשטח.</p>
@@ -100,7 +105,7 @@
 </ul>
 <h3 id="_2">צרכי התושב בחירום (ארבעה תחומים מרכזיים)</h3>
 <p>תרשים מציג דמות אדם במרכז, מוקפת בארבעה "בלוני דיבור" עם צורך ושאלה נלווית:</p>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>תחום</th>
@@ -130,7 +135,7 @@
 <td>אורך רוח, תקווה ואמונה במטרה</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="3">3. מקורות המידע לתושב</h2>
 <p>תרשים חצים המציג את מקורות המידע המגיעים לתושב, בחלוקה לשני צדדים:</p>
@@ -242,7 +247,7 @@ FULL NAME, AGE, GENDER, TELEPHONE NUMBER, TAX INFO, ADDRESS, CITIZENSHIP, BIRTH 
 <h2 id="11">11. תהליך ההסברה השלם להנעה לפעולה</h2>
 <p><strong>טקסונומיית החשיבה של בלום</strong> – כלי לסיווג למידה על פי רמת החשיבה, המשרתת אותנו לשם תכנון למידה והטמעה, השבחת מיומנויות ובדיקת השגים.</p>
 <p>תהליך בן חמישה שלבים (בתרשים מופיע מימין לשמאל: חשיפה → צריכה → קבלה → הבנה → יישום):</p>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>שלב</th>
@@ -271,7 +276,7 @@ FULL NAME, AGE, GENDER, TELEPHONE NUMBER, TAX INFO, ADDRESS, CITIZENSHIP, BIRTH 
 <td>באיזה אופן ניתן לחזות את התנהגותו של האזרח ביחס להנחיות?</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="12-4">12. מודל להסברה ולהנעה לפעולה (מודל 4 השלבים)</h2>
 <p>מודל מרכזי המוצג במצגת במספר שקפים עוקבים, המורכב מארבעה שלבים (מספור יורד 4→1, כל שלב מודגש בנפרד ולבסוף מוצג מלא עם פירוט תת-סעיפים):</p>
@@ -286,7 +291,7 @@ FULL NAME, AGE, GENDER, TELEPHONE NUMBER, TAX INFO, ADDRESS, CITIZENSHIP, BIRTH 
 </ul>
 <h3 id="2_1">שלב 2 – מהם הצרכים? (אדום, אייקון זכוכית מגדלת)</h3>
 <p>מודל "צורך מול דירקטיבה":</p>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>צורך (מגיע מלמטה)</th>
@@ -311,7 +316,7 @@ FULL NAME, AGE, GENDER, TELEPHONE NUMBER, TAX INFO, ADDRESS, CITIZENSHIP, BIRTH 
 <td>תומך תוכנית מענה</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><em>(מצוין: "מחייב סנסורים!")</em></p>
 <p>נוסף:
 - צורך צפוי
@@ -352,7 +357,7 @@ FULL NAME, AGE, GENDER, TELEPHONE NUMBER, TAX INFO, ADDRESS, CITIZENSHIP, BIRTH 
 <p>"בסיור שביצענו ראינו שתושבים שהאזעקה תפסה אותם ברחוב (ללא מיגון קרוב), לא נשכבים על הקרקע…"</p>
 </blockquote>
 <h3 id="_10">"הצעות?" – ארבע קבוצות יעד עם התנגדויות שונות (ציטוטים מהשטח)</h3>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>קהל יעד</th>
@@ -377,7 +382,7 @@ FULL NAME, AGE, GENDER, TELEPHONE NUMBER, TAX INFO, ADDRESS, CITIZENSHIP, BIRTH 
 <td>"זה מביך ממש"</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="_11">מענה הסברתי מותאם לכל קהל יעד (דוגמאות קמפיין)</h3>
 <ul>
 <li><strong>רש"ח – אינפו רציונלי:</strong> גרף הממחיש שמדוע חשוב לשכב על הקרקע בהתרעה – שכיבה על הקרקע: 10% סיכוי להיפגע; כריעה: 85%; עמידה: 100% (אינפוגרפיקה המציגה את ההבדל באחוזים).</li>

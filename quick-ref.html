@@ -10,20 +10,22 @@
 <body data-root="./">
 <header class="site-header">
   <div class="container bar">
-    <a class="brand" href="index.html">
+    <a class="brand" href="./index.html">
       <span class="badge">🎖️</span>
       <span>אתר הידע<br><small>קורס קציני הסברה 2026</small></span>
     </a>
     <nav class="main-nav">
-      <a href="index.html">בית</a>
-      <a href="quick-ref.html" class="active">מדריך מהיר</a>
+      <a href="./index.html">בית</a>
+      <a href="./quick-ref.html">מדריך מהיר</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
     <div class="search-box">
       <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
       <div id="search-results"></div>
     </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobile-menu"></nav>
 
 <div class="hero" style="padding:34px 0 40px;">
   <div class="container">
@@ -34,6 +36,10 @@
 
 <main class="container">
 
+  <div class="page-actions" style="margin-top:8px;">
+    <button data-print>🖨️ הדפס / שמור כ-PDF</button>
+  </div>
+
   <h2 class="section-title"><span class="n">1</span>🚦 ארבעת מדרגי מדיניות ההתגוננות</h2>
   <div class="traffic-light">
     <div class="tl-item tl-green">ירוק — פעילות מלאה<br><small>ללא הגבלות</small></div>
@@ -42,7 +48,7 @@
     <div class="tl-item tl-red">אדום — פעילות הכרחית<br><small>משק חיוני בלבד</small></div>
   </div>
   <div class="qr-card">
-    <table class="compact">
+    <div class="table-scroll"><table class="compact">
       <thead><tr><th>תחום</th><th>ירוק (מלאה)</th><th>צהוב (חלקית)</th><th>כתום (מצומצמת)</th><th>אדום (הכרחית)</th></tr></thead>
       <tbody>
         <tr>
@@ -74,13 +80,13 @@
           <td>רק במקום שניתן להיכנס ממנו למרחב מוגן תקני</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
     <p style="font-size:0.82rem;color:var(--text-muted);margin-top:10px;">המדיניות מופצת ל-48 שעות ונמדדת כל 24 שעות. ראו פירוט מלא ב-<a href="topics/04.html">מדיניות ההתגוננות</a> וב-<a href="topics/14.html">מסמך המדיניות המלא</a>.</p>
   </div>
 
   <h2 class="section-title"><span class="n">2</span>⚖️ הנחיה מצילת חיים מול מדיניות התגוננות</h2>
   <div class="qr-card">
-    <table class="compact">
+    <div class="table-scroll"><table class="compact">
       <thead><tr><th>מאפיין</th><th>מדיניות התגוננות</th><th>הנחיה מצילת חיים</th></tr></thead>
       <tbody>
         <tr><td><b>תכלית</b></td><td>קווים מנחים להגנה עצמית בהתאם לשגרת/קיום חירום</td><td>הנעה לפעולה מיידית מול איום נתון</td></tr>
@@ -89,7 +95,7 @@
         <tr><td><b>משך תוקף</b></td><td>48 שעות</td><td>לא קבוע — דקות עד ימים</td></tr>
         <tr><td><b>הפצה</b></td><td>מסמך מדיניות פורמלי, ערוצי תקשורת ומשרדים</td><td>ללא מסמך — דחיפה לנייד, אתר, יישומון</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <h2 class="section-title"><span class="n">3</span>🎯 עקרונות ליבה בהסברה (מאוחד מכלל המצגות)</h2>
@@ -216,7 +222,7 @@
 
   <h2 class="section-title"><span class="n">8</span>📊 נתוני ייחוס (מהמצגות)</h2>
   <div class="qr-card">
-    <table class="compact">
+    <div class="table-scroll"><table class="compact">
       <tbody>
         <tr><td>סה"כ רשויות מקומיות בישראל</td><td><b>259</b> (77 ערים, 126 מועצות מקומיות, 54 מועצות אזוריות, 2 מועצות תעשייתיות)</td></tr>
         <tr><td>מערך האוכלוסייה בפיקוד העורף</td><td><b>כ-4,000</b> אנשי מילואים</td></tr>
@@ -228,7 +234,7 @@
         <tr><td>מוקד מענה לאזרח</td><td><b>104</b> — 24/7, בעברית, ערבית, אמהרית, רוסית, אנגלית, ושלוחה למגזר החרדי</td></tr>
         <tr><td>מוקד רשותי</td><td><b>106</b></td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <h2 class="section-title"><span class="n">9</span>✅ צ'קליסט לקצין ההסברה ביקל"ר</h2>

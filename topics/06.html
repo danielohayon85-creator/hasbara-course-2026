@@ -18,12 +18,14 @@
       <a href="../index.html">בית</a>
       <a href="../quick-ref.html">מדריך מהיר</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
     <div class="search-box">
-      <input id="site-search" type="text" placeholder="חיפוש באתר... (למשל: ממ\"ד, מדרג כתום, קה\"א)" autocomplete="off">
+      <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
       <div id="search-results"></div>
     </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobile-menu"></nav>
 
 <main class="container">
   <div class="breadcrumb"><a href="../index.html">בית</a> ← <a href="../index.html#cat-authority">הרשות המקומית ומטה החירום</a> ← מבנה והכנת הרשות המקומית לחירום</div>
@@ -70,6 +72,9 @@
         <span class="pill">🏛️ הרשות המקומית ומטה החירום</span>
         <span class="pill orange">23 שקפי מקור</span>
       </div>
+      <div class="page-actions">
+        <button data-print>🖨️ הדפס / שמור כ-PDF</button>
+      </div>
       <h1 id="_1">מבנה והכנת הרשות המקומית לחירום</h1>
 <p><em>מצגת הדרכה - בלמ"ס, דצמבר 2023. מחלקת אוכלוסייה | ענף רשויות - פיקוד העורף</em></p>
 <h2 id="_2">נושאי הקורס (מבנה המצגת המלא)</h2>
@@ -93,7 +98,7 @@
 <h2 id="1">פרק 1: אחריות</h2>
 <h3 id="_5">אחריות על מוכנות הרשויות המקומיות לחירום</h3>
 <p>ארבעה גורמים אחראים, המוצגים כמעגל סביב "הרשות המקומית":</p>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>גורם</th>
@@ -122,7 +127,7 @@
 <td>אחראית על פו"ש (פעילות וסדר ציבורי) באירוע אסון אזרחי</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="2">פרק 2: הכנת הרשויות המקומיות לחירום</h2>
 <h3 id="-">הרשות המקומית - מבנה כללי</h3>
@@ -132,7 +137,7 @@
 </ul>
 <h3 id="_6">נתוני הרשויות המקומיות (מספרים)</h3>
 <p>סוגי הרשויות: עירייה, מועצה מקומית, מועצה אזורית ומועצה תעשייתית.</p>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>נתון</th>
@@ -161,9 +166,9 @@
 <td>126</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="-_1">הרשות כלבנת היסוד - ארבעה ממדים</h3>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>ממד</th>
@@ -188,7 +193,7 @@
 <td>יכולות לתת מענה למספר נושאים במקביל תוך אינטגרציה מהירה</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="_7">מה הם האתגרים למול אופי הרשות?</h3>
 <p><strong>אתגרי הרשות המקומית:</strong>
 - מבנה ארגוני שונה בין שגרה לחירום
@@ -258,7 +263,7 @@
 <li>תת-יחידות תחת מרכז השליטה: תא חירום וביטחון, תא מבצעים, תא ניהול שולחן מרכזי, מרכז שליטה ודיווח</li>
 </ul>
 <p><strong>שישה מכלולים ברשות בחירום:</strong></p>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>מכלול</th>
@@ -291,7 +296,7 @@
 <td>תא כ"א, תא מחשוב, תא תיירות</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="6-all-hazards-approach">פרק 6: כשירות נדרשת - גישת "כלל הסיכונים" (All Hazards approach)</h2>
 <p>על פי גישה זו, היערכות ממוקדת ביכולות ותפיסת הפעולה המותאמת למגוון רחב של תרחישים. פיתוח יכולות ממוקד במענה לתוצאות מצב החירום ולא בגורם המחולל של החירום.</p>
@@ -300,7 +305,7 @@
 <p>מקור: Waugh Jr, W. L. (2004). The "all-hazards" approach must be continued. <em>Journal of Emergency Management</em>, 2(1), 11-12.</p>
 <hr />
 <h2 id="7-">פרק 7: כשירות נדרשת - ארבעה תחומים</h2>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -325,7 +330,7 @@
 <td>טיפול באוכלוסייה</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="1_2">1. עבודת מטה בחירום</h3>
 <ul>
 <li>יכולת יצירת תמונת מצב של הרשות המקומית</li>
@@ -389,7 +394,7 @@
 - בחפ"ק יימצאו העזרים והאמצעים הדרושים להצגת תמונת המצב, להעברת המידע למרה"פ ולביצוע העבודה הנדרשת בחירום
 - צוות החפ"ק יכול לכלול מנהל חפ"ק, רושם אירועים, נהג ובע"ת מהרשויות הרלוונטיים לאירוע, כגון: מהנדס, נציג מכלול האוכלוסייה וכדומה</p>
 <p><strong>החפ"ק ייערך לפעולה בשני שלבים:</strong></p>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>שלב</th>
@@ -406,7 +411,7 @@
 <td>השלמת אמצעי התקשורת, אספקת חשמל (גנרציה), המחשוב והעזרים הדרושים לתפקוד מלא של החפ"ק בכפוף למאפייני האירוע</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
       <div class="topic-nav-footer">
         

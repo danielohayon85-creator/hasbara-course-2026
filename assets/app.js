@@ -64,5 +64,62 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", initSearch);
+  function initMobileMenu() {
+    var toggle = document.getElementById("nav-toggle");
+    var menu = document.getElementById("mobile-menu");
+    if (!toggle || !menu) return;
+    var root = rootPath();
+    var items = [
+      { href: root + "index.html", label: "🏠 בית" },
+      { href: root + "quick-ref.html", label: "📌 מדריך מהיר" },
+      { divider: "תמציות" },
+      { href: root + "digests/role.html", label: "🎖️ תפקיד קצין ההסברה" },
+      { href: root + "digests/theory.html", label: "📚 עקרונות ותורת ההסברה" },
+      { href: root + "digests/guidelines.html", label: "🛡️ הנחיות ומדיניות" },
+      { href: root + "digests/authority.html", label: "🏛️ הרשות המקומית" },
+      { href: root + "digests/population.html", label: "🧰 מערך האוכלוסייה וכלים" },
+    ];
+    menu.innerHTML = items.map(function (it) {
+      if (it.divider) return '<div class="mobile-menu-divider">' + it.divider + "</div>";
+      return '<a href="' + it.href + '">' + it.label + "</a>";
+    }).join("");
+
+    toggle.addEventListener("click", function () {
+      var open = menu.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "✕" : "☰";
+      document.body.style.overflow = open ? "hidden" : "";
+    });
+    menu.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") {
+        menu.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.textContent = "☰";
+        document.body.style.overflow = "";
+      }
+    });
+  }
+
+  function initPrintButtons() {
+    document.querySelectorAll("[data-print]").forEach(function (btn) {
+      btn.addEventListener("click", function () { window.print(); });
+    });
+  }
+
+  function initArchiveAccordion() {
+    document.querySelectorAll(".archive-toggle").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var body = document.getElementById(btn.getAttribute("aria-controls"));
+        var open = body.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initSearch();
+    initMobileMenu();
+    initPrintButtons();
+    initArchiveAccordion();
+  });
 })();

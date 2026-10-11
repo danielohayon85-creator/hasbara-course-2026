@@ -18,12 +18,14 @@
       <a href="../index.html">בית</a>
       <a href="../quick-ref.html">מדריך מהיר</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
     <div class="search-box">
       <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
       <div id="search-results"></div>
     </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobile-menu"></nav>
 
 <main class="container">
   <div class="breadcrumb"><a href="../index.html">בית</a> ← הרשות המקומית ומטה החירום</div>
@@ -46,6 +48,9 @@
         <span class="pill">🏛️ הרשות המקומית ומטה החירום</span>
         <span class="pill orange">תמצית מאוחדת משתי מצגות</span>
       </div>
+      <div class="page-actions">
+        <button data-print>🖨️ הדפס / שמור כ-PDF</button>
+      </div>
 
       <h1>הרשות המקומית ומטה החירום</h1>
 
@@ -63,7 +68,7 @@
       <p>בשגרה, הרשות מאורגנת לפי מחלקות רגילות (חינוך, הנדסה, רווחה, גזברות וכו') תחת ראש הרשות ומנכ"ל. <b>בחירום, המבנה משתנה לחלוטין</b>: מוקם מרכז שליטה והדיווח (ראש הרשות ← מנכ"ל/רמ"ט ← מרכז השליטה והדיווח, בקשר ליקל"ר), והפעילות מתארגנת סביב שישה מכלולים.</p>
 
       <h2 id="units">שישה המכלולים ברשות בחירום</h2>
-      <table>
+      <div class="table-scroll"><table>
         <thead><tr><th>מכלול</th><th>תאים עיקריים</th></tr></thead>
         <tbody>
           <tr><td><b>אוכלוסייה</b></td><td>רווחה ושירותים חברתיים, פס"ח, בריאות, דת, קליטת עלייה, מתנדבים, צוותי התערבות</td></tr>
@@ -73,7 +78,7 @@
           <tr><td><b>לוגיסטיקה ותפעול</b></td><td>משק"ל, רכש, מזון, היסעים, דלק, תובלה, פיקוח</td></tr>
           <tr><td><b>מנהל כללי ומשא"ן</b></td><td>כוח אדם, מחשוב, תיירות</td></tr>
         </tbody>
-      </table>
+      </table></div>
       <p>כשירות נדרשת מהרשות נבחנת בגישת <b>"כלל הסיכונים" (All Hazards)</b> - היערכות ממוקדת ביכולות ובתוצאות, לא בגורם המחולל, בארבעה תחומים: עבודת מטה בחירום, מענה מבצעי לאירועים, רציפות תפקודית, וטיפול באוכלוסייה.</p>
 
       <h2 id="info">מכלול מידע לציבור - בפירוט (הממשק הכי חשוב לקצין ההסברה)</h2>

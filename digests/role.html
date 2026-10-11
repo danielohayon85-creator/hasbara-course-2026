@@ -18,12 +18,14 @@
       <a href="../index.html">בית</a>
       <a href="../quick-ref.html">מדריך מהיר</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
     <div class="search-box">
       <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
       <div id="search-results"></div>
     </div>
   </div>
 </header>
+<nav class="mobile-menu" id="mobile-menu"></nav>
 
 <main class="container">
   <div class="breadcrumb"><a href="../index.html">בית</a> ← תפקיד קצין ההסברה</div>
@@ -47,6 +49,9 @@
         <span class="pill">🎖️ תפקיד קצין ההסברה</span>
         <span class="pill orange">תמצית מאוחדת</span>
       </div>
+      <div class="page-actions">
+        <button data-print>🖨️ הדפס / שמור כ-PDF</button>
+      </div>
 
       <h1>תפקיד קצין ההסברה</h1>
       <p>עמוד זה מאחד את התוכן המשמעותי משתי המצגות העוסקות בתפקיד: <a href="../topics/09.html">מערך ההסברה פיקוד העורף</a> ו-<a href="../topics/12.html">תפקיד קצין ההסברה - מחוז, נפה ויקל"ר</a>. למי שרוצה לראות כל שקף במקור - קישורים בתחתית העמוד.</p>
@@ -62,7 +67,7 @@
       <p>נקודה קריטית: <b>סמכות בלעדית לקביעת תוכן המסרים וההנחיות הרשמיות היא של יחידת ההסברה הפיקודית בלבד.</b> אסור להפיץ תכנים או לערוך מסרי פקע"ר ברמת המחוז/נפה/יקל"ר ללא אישור פיקודי - גם לא סרטונים מהשטח.</p>
 
       <h2 id="levels">התפקיד בכל דרג</h2>
-      <table>
+      <div class="table-scroll"><table>
         <thead><tr><th>דרג</th><th>אופי התפקיד</th><th>משימות עיקריות</th></tr></thead>
         <tbody>
           <tr>
@@ -81,7 +86,7 @@
             <td>הטמעת תוכניות הסברה, הנחיות מצילות חיים ומדיניות ההתגוננות; גיבוש פערים וצרכים מקומיים</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
 
       <h2 id="yeklar">קצין הסברה ביקל"ר - בפירוט</h2>
       <p>זהו הדרג שרוב קציני ההסברה בקורס יפעלו בו. <b>הממשק המרכזי ביותר הוא דובר הרשות המקומית</b> - נדרשת היכרות הדוקה ועבודה בשגרה על בניית אמון ותיאום מוקדם, עוד לפני שפורץ אירוע.</p>
