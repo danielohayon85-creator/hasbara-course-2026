@@ -44,6 +44,24 @@ DOC_META = {
     "09": ("role", "🧭", 1, "ייעוד ומבנה מערך ההסברה האורכי - מיחידת ההסברה הפיקודית ועד קצין ההסברה ביקל\"ר."),
 }
 
+DIGESTS = [
+    {"id": "role", "icon": "🎖️", "title": "תפקיד קצין ההסברה",
+     "desc": "מי קצין ההסברה, מה תפקידו בכל דרג, מודל אקטיבי מול פסיבי, וצ'קליסט.",
+     "url": "digests/role.html"},
+    {"id": "theory", "icon": "📚", "title": "עקרונות ותורת ההסברה",
+     "desc": "הגדרת הסברה, המעגל הזהוב, עקרונות היסוד (גרסה מאוחדת) ומודל ההנעה לפעולה.",
+     "url": "digests/theory.html"},
+    {"id": "guidelines", "icon": "🛡️", "title": "הנחיות ומדיניות ההתגוננות",
+     "desc": "ההבדל בין הנחיה מצילת חיים למדיניות, הסמכות החוקית, ותהליך קביעת המדיניות היומי.",
+     "url": "digests/guidelines.html"},
+    {"id": "authority", "icon": "🏛️", "title": "הרשות המקומית ומטה החירום",
+     "desc": "שישה המכלולים, ומכלול המידע לציבור בפירוט - הממשק המרכזי שלך.",
+     "url": "digests/authority.html"},
+    {"id": "population", "icon": "🧰", "title": "מערך האוכלוסייה וכלים",
+     "desc": "מבנה מערך האוכלוסייה, תפקיד הקה\"א, והכלים העומדים לרשות ההסברה.",
+     "url": "digests/population.html"},
+]
+
 MD = markdown.Markdown(extensions=["tables", "fenced_code", "sane_lists", "toc"],
                         extension_configs={"toc": {"permalink": False}})
 
@@ -239,6 +257,24 @@ def build():
             "text": d["title"] + " " + d["short_desc"],
         })
 
+    # index the hand-authored digest pages too
+    for d in DIGESTS:
+        path = os.path.join(ROOT, d["url"])
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as f:
+            digest_html = f.read()
+        search_index.append({
+            "title": d["title"], "url": d["url"], "section": "תמצית",
+            "docTitle": d["title"], "text": d["title"] + " " + d["desc"],
+        })
+        for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>', digest_html, re.S):
+            heading = re.sub(r"<[^>]+>", "", m.group(2)).strip()
+            search_index.append({
+                "title": heading, "url": f"{d['url']}#{m.group(1)}",
+                "section": d["title"], "docTitle": d["title"], "text": heading,
+            })
+
     with open(os.path.join(ROOT, "search-index.json"), "w", encoding="utf-8") as f:
         json.dump(search_index, f, ensure_ascii=False)
     print(f"wrote search-index.json ({len(search_index)} entries)")
@@ -278,21 +314,29 @@ INDEX_TEMPLATE = """<!doctype html>
 <div class="hero">
   <div class="container">
     <h1>חומר הדרכה לקורס קציני הסברה 2026</h1>
-    <p>מרכז ידע אחד לכל חומרי ההדרכה: תפקיד קצין ההסברה, עקרונות ותורת ההסברה, הנחיות מצילות חיים ומדיניות ההתגוננות, הרשות המקומית ומערך האוכלוסייה בפיקוד העורף.</p>
+    <p>חמש תמציות ממוקדות - מה שבאמת צריך לדעת. לעיון מעמיק בכל שקף מהמקור, ראו את ארכיון המצגות בתחתית העמוד.</p>
     <div class="stats">
-      <div class="stat"><b>{n_docs}</b><span>מצגות מקור</span></div>
-      <div class="stat"><b>5</b><span>תחומי ידע</span></div>
+      <div class="stat"><b>5</b><span>תמציות מאוחדות</span></div>
+      <div class="stat"><b>{n_docs}</b><span>מצגות מקור בארכיון</span></div>
       <div class="stat"><b>{n_sections}</b><span>סעיפים חיפושיים</span></div>
     </div>
     <div class="quicklinks">
       <a href="quick-ref.html">📌 מדריך מהיר / מילון מונחים</a>
-      <a href="#cat-role">🎖️ תפקיד הקצין</a>
-      <a href="#cat-guidelines">🛡️ הנחיות ומדיניות</a>
+      <a href="digests/role.html">🎖️ תפקיד הקצין</a>
+      <a href="digests/guidelines.html">🛡️ הנחיות ומדיניות</a>
     </div>
   </div>
 </div>
 
 <main class="container">
+  <h2 class="section-title" id="digests"><span class="n">★</span>תמציות - התחילו כאן</h2>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כל תמצית מאחדת 2-4 מצגות מקור לעמוד אחד קצר וממוקד, עם קישורים למקורות המלאים בתחתית.</p>
+  <div class="cards-grid">
+    {digest_cards}
+  </div>
+
+  <h2 class="section-title" id="archive" style="margin-top:56px;">📚 ארכיון מצגות המקור</h2>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כל 14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, בדיקת ציטוט מדויק או הכנת שיעור. אלו אינן חומר הלימוד המומלץ לקריאה ראשונה - לכך נועדו התמציות למעלה.</p>
   {categories}
 </main>
 
@@ -307,12 +351,21 @@ INDEX_TEMPLATE = """<!doctype html>
 """
 
 CARD_TEMPLATE = """<a class="card-link-wrap" href="topics/{id}.html" style="text-decoration:none;color:inherit;">
-<div class="card">
+<div class="card" style="opacity:0.88;">
+  <div class="icon">{icon}</div>
+  <h3 style="font-size:0.96rem;">{title}</h3>
+  <p style="font-size:0.82rem;">{desc}</p>
+  <div class="meta">{pages} שקפי מקור · מקור מלא</div>
+  <span class="card-link">פתח מקור ←</span>
+</div>
+</a>"""
+
+DIGEST_CARD_TEMPLATE = """<a class="card-link-wrap" href="{url}" style="text-decoration:none;color:inherit;">
+<div class="card" style="border-right:4px solid var(--orange);">
   <div class="icon">{icon}</div>
   <h3>{title}</h3>
   <p>{desc}</p>
-  <div class="meta">{pages} שקפי מקור</div>
-  <span class="card-link">קרא עוד ←</span>
+  <span class="card-link">קרא את התמצית ←</span>
 </div>
 </a>"""
 
@@ -342,9 +395,15 @@ def write_index(categories, cat_docs, n_docs):
   </div>
 """)
 
+    digest_cards = "\n".join(
+        DIGEST_CARD_TEMPLATE.format(url=d["url"], icon=d["icon"], title=d["title"], desc=d["desc"])
+        for d in DIGESTS
+    )
+
     html = INDEX_TEMPLATE.format(
         n_docs=n_docs,
         n_sections=search_index_len,
+        digest_cards=digest_cards,
         categories="\n".join(cat_blocks),
     )
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
