@@ -115,6 +115,19 @@ header.site-header {
   flex-wrap: wrap;
 }
 
+/* מרכוז הלוגו: מעל 640px הלוגו ממורכז אבסולוטית ביחס לכותרת, בעוד
+   הניווט וחיפוש השטח נשארים בשני הקצוות - כך שהוא ממורכז בפועל
+   ולא רק "באמצע הרווח שנשאר". במובייל (מתחת ל-640px) נשאר במקומו
+   הרגיל בתזרים הרגיל, לצד כפתור התפריט. */
+@media (min-width: 900px) {
+  .site-header .bar { position: relative; }
+  .site-header .bar .brand {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
 .brand {
   display: flex;
   align-items: center;

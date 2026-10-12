@@ -331,7 +331,7 @@ def build():
         with open(path, encoding="utf-8") as f:
             digest_html = f.read()
         search_index.append({
-            "title": d["title"], "url": d["url"], "section": "תמצית",
+            "title": d["title"], "url": d["url"], "section": "סיכום",
             "docTitle": d["title"], "text": d["title"] + " " + d["desc"],
         })
         for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>', digest_html, re.S):
@@ -392,9 +392,9 @@ INDEX_TEMPLATE = """<!doctype html>
 <div class="hero">
   <div class="container">
     <h1>כל מה שקצין הסברה צריך לדעת - במקום אחד</h1>
-    <p>חמש תמציות ממוקדות - מה שבאמת צריך לדעת. לעיון מעמיק בכל שקף מהמקור, ראו את ארכיון המצגות בתחתית העמוד.</p>
+    <p>חמש סיכומים ממוקדים - מה שבאמת צריך לדעת. לעיון מעמיק בכל שקף מהמקור, ראו את ארכיון המצגות בתחתית העמוד.</p>
     <div class="stats">
-      <div class="stat"><b>5</b><span>תמציות מאוחדות</span></div>
+      <div class="stat"><b>5</b><span>סיכומים מאוחדים</span></div>
       <div class="stat"><b>{n_docs}</b><span>מצגות מקור בארכיון</span></div>
       <div class="stat"><b>{n_sections}</b><span>סעיפים חיפושיים</span></div>
     </div>
@@ -408,8 +408,8 @@ INDEX_TEMPLATE = """<!doctype html>
 </div>
 
 <main class="container">
-  <h2 class="section-title" id="digests"><span class="n">{icon_star}</span>התחילו כאן: חמש תמציות</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">לכל תמצית 2-4 מצגות מקור, מאוחדות לעמוד אחד קצר וממוקד, עם קישור למקורות המלאים בתחתית העמוד.</p>
+  <h2 class="section-title" id="digests"><span class="n">{icon_star}</span>התחילו כאן: חמש סיכומים</h2>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">לכל סיכום 2-4 מצגות מקור, מאוחדות לעמוד אחד קצר וממוקד, עם קישור למקורות המלאים בתחתית העמוד.</p>
   <div class="cards-grid">
     {digest_cards}
   </div>
@@ -423,7 +423,7 @@ INDEX_TEMPLATE = """<!doctype html>
   </a>
 
   <h2 class="section-title" id="archive" style="margin-top:56px;">{icon_book2} ארכיון מצגות המקור</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, אימות ציטוט מדויק או הכנת שיעור. לקריאה ראשונה מומלץ להתחיל בתמציות שלמעלה.</p>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, אימות ציטוט מדויק או הכנת שיעור. לקריאה ראשונה מומלץ להתחיל בסיכומים שלמעלה.</p>
   {categories}
 </main>
 
@@ -452,7 +452,7 @@ DIGEST_CARD_TEMPLATE = """<a class="card-link-wrap" href="{url}" style="text-dec
   <div class="icon">{icon}</div>
   <h3>{title}</h3>
   <p>{desc}</p>
-  <span class="card-link">קרא את התמצית ←</span>
+  <span class="card-link">קרא את הסיכום ←</span>
 </div>
 </a>"""
 
