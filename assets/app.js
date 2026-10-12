@@ -73,7 +73,8 @@
     role: '<path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/><path d="M12 7.4l1.2 2.5 2.8.4-2 1.9.5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-1.9 2.8-.4L12 7.4z" fill="currentColor" stroke="none"/>',
     guidelines: '<path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/><path d="M8.6 11.6l2.3 2.3 4.4-4.6"/>',
     authority: '<path d="M3 9.2 12 4l9 5.2"/><path d="M4.3 9.6V20M19.7 9.6V20"/><path d="M7.6 9.6V20M11 9.6V20M13 9.6V20M16.4 9.6V20"/><path d="M3 20h18"/>',
-    population: '<rect x="3" y="9.5" width="18" height="10" rx="1.5"/><path d="M8.2 9.5V6.8A1.8 1.8 0 0 1 10 5h4a1.8 1.8 0 0 1 1.8 1.8v2.7"/><path d="M3 14h18"/>'
+    population: '<rect x="3" y="9.5" width="18" height="10" rx="1.5"/><path d="M8.2 9.5V6.8A1.8 1.8 0 0 1 10 5h4a1.8 1.8 0 0 1 1.8 1.8v2.7"/><path d="M3 14h18"/>',
+    quiz: '<circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.8 2.8 0 1 1 3.8 2.6c-.7.3-1 .8-1 1.6"/><circle cx="12" cy="17" r="0.9" fill="currentColor" stroke="none"/>'
   };
   function svgIcon(name) {
     return '<svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" ' +
@@ -89,7 +90,8 @@
       { href: root + "index.html", label: svgIcon("home") + " בית" },
       { href: root + "quick-ref.html", label: svgIcon("pin") + " מדריך מהיר" },
       { href: root + "acronyms.html", label: svgIcon("theory") + " מילון קיצורים" },
-      { divider: "תמציות" },
+      { href: root + "quiz.html", label: svgIcon("quiz") + " מבחן תרגול" },
+      { divider: "סיכומים" },
       { href: root + "digests/role.html", label: svgIcon("role") + " תפקיד קצין ההסברה" },
       { href: root + "digests/theory.html", label: svgIcon("theory") + " עקרונות ותורת ההסברה" },
       { href: root + "digests/guidelines.html", label: svgIcon("guidelines") + " הנחיות ומדיניות" },

@@ -1,0 +1,331 @@
+// מבחן תרגול - קורס קציני הסברה 2026
+(function () {
+  var CATEGORIES = {
+    role: "תפקיד קצין ההסברה",
+    theory: "עקרונות ותורת ההסברה",
+    guidelines: "הנחיות ומדיניות ההתגוננות",
+    authority: "הרשות המקומית ומטה החירום",
+    population: "מערך האוכלוסייה וכלים"
+  };
+
+  // type: "concept" (ידע/מושג) או "scenario" (יישום התו"ל - מקרה בוחן)
+  var QUESTIONS = [
+    {
+      cat: "role", type: "concept",
+      q: 'מי מוסמך לקבוע את תוכן המסרים וההנחיות הרשמיות של פיקוד העורף?',
+      options: ['קצין ההסברה ביקל"ר', 'דובר הרשות המקומית', 'יחידת ההסברה הפיקודית בלבד', 'מכלול מידע לציבור'],
+      correct: 2,
+      explain: 'הסמכות לקביעת תוכן המסרים וההנחיות הרשמיות היא בלעדית ליחידת ההסברה הפיקודית. אסור להפיץ או לערוך מסרי פקע"ר ברמת מחוז/נפה/יקל"ר ללא אישור פיקודי - גם לא סרטונים מהשטח.'
+    },
+    {
+      cat: "role", type: "scenario",
+      q: 'קצין הסברה ביקל"ר צילם סרטון קצר ומוצלח מהשטח המסביר הנחיית מיגון, ורוצה להעלות אותו מיד לעמוד הפייסבוק של הרשות. מה הפעולה הנכונה?',
+      options: ['להעלות מיד - זה מידע מועיל לציבור', 'להעלות רק לאחר אישור פיקודי לתוכן', 'לשלוח לדובר הרשות בלבד, בלי אישור נוסף', 'לא להעלות תוכן מהשטח בשום מקרה'],
+      correct: 1,
+      explain: 'גם תוכן טוב ומועיל מהשטח טעון אישור פיקודי לפני פרסום - הסמכות לתוכן מסרים נשארת בלעדית ליחידת ההסברה הפיקודית, ללא קשר לאיכות התוצר או לכוונה הטובה.'
+    },
+    {
+      cat: "role", type: "concept",
+      q: 'מהו הממשק המרכזי ביותר שעל קצין ההסברה ביקל"ר לבנות בו אמון ועבודת שגרה?',
+      options: ['מוקד 104', 'דובר הרשות המקומית', "קה\"א הארצי", 'יחידת ההסברה הפיקודית'],
+      correct: 1,
+      explain: 'דובר הרשות המקומית הוא הממשק המרכזי ביותר של קצין ההסברה ביקל"ר - נדרשת היכרות הדוקה ועבודה בשגרה על בניית אמון ותיאום מוקדם, עוד לפני שפורץ אירוע.'
+    },
+    {
+      cat: "role", type: "scenario",
+      q: 'קצינת הסברה חדשה ברשות דוחה את פגישת ההיכרות עם מפקד היקל"ר ודובר הרשות ל"אחרי האירוע הראשון", כדי "להתמקד בדברים הדחופים". מה הבעיה בגישה הזו?',
+      options: ['אין בעיה - זה תעדוף נכון של זמן', 'ההיכרות עם בעלי התפקידים צריכה לקרות לפני אירוע ולא בזמנו - זה בדיוק מה שהבדיל בין המודל האקטיבי לפסיבי בדוגמאות מהשטח', 'פגישות היכרות הן רק פרוטוקול מיותר', 'מפקד היקל"ר אינו גורם רלוונטי לעבודת קצין ההסברה'],
+      correct: 1,
+      explain: 'בהשוואת "גילי" (המודל האקטיבי) מול "שירה" (הכנה מוגבלת) - ההבדל המכריע היה תיאום ציפיות ובניית ממשקים בשגרה, לפני שיש אירוע לנהל. דחיית ההיכרות היא בדיוק הדפוס הפסיבי שמוביל לנתק מקצועי.'
+    },
+    {
+      cat: "role", type: "concept",
+      q: 'מי אחראי לגבש ולתחזק תמונת מצב הסברה ברמת המאקרו (אזורים גיאוגרפיים וקהילות) במחוז?',
+      options: ['קצין הסברה ביקל"ר', 'קצין הסברה במחוז', 'דובר הרשות המקומית', "קה\"א בנפה"],
+      correct: 1,
+      explain: 'קצין ההסברה במחוז מחזיק ומתקף תיק נתונים מחוזי כללי ברמת ניתוח אוכלוסייה מאקרו, בעוד שהיקל"ר מדייק את תמונת המצב ברמה המקומית הספציפית.'
+    },
+    {
+      cat: "theory", type: "concept",
+      q: 'לפי "המעגל הזהוב" (Golden Circle), מאיזו שאלה יש להתחיל כדי לבנות הסברה אפקטיבית?',
+      options: ['"מה" - מה אנחנו עושים', '"איך" - איך אנחנו עושים את זה', '"למה" - למה אנחנו עושים את זה', 'אין סדר מועדף, הכול נכתב יחד'],
+      correct: 2,
+      explain: 'המודל מתחיל תמיד מה"למה" (התכלית, הרציונל) וממשיך כלפי "איך" ולבסוף "מה" - התוכן המוחשי. חשיבה שמתחילה מה"מה" (ההנחיה עצמה) בלי להסביר את הרציונל פחות אפקטיבית.'
+    },
+    {
+      cat: "theory", type: "concept",
+      q: 'מהו עקרון היסוד שחוזר לאורך כל חומרי הקורס לגבי חשיפת מידע לציבור בחירום?',
+      options: ['חשיפת מידע תמיד מייצרת פאניקה, ולכן יש למעט בה', 'מידע מניע את הציבור להיערך ולהינצל - ולא חושף אותו לפאניקה', 'יש להימנע ממתן הנחיות לא נעימות', 'רק קצינים בכירים רשאים למסור מידע לציבור'],
+      correct: 1,
+      explain: 'עקרון מרכזי: מידע מניע את הציבור להיערך ובכך לנצל - ההנחה השגויה ש"חשיפת מידע מכניסה לפאניקה" היא בדיוק מה שהקורס מבקש לתקן.'
+    },
+    {
+      cat: "theory", type: "scenario",
+      q: 'תושב שואל קצין הסברה: "למה אני צריך לשכב על הקרקע ברחוב ולכסות את הראש, ולא פשוט לרוץ למרחב המוגן?" מהי התגובה הנכונה לפי עקרון "תמיד להתחיל מה\'למה\'"?',
+      options: ['"כי ככה נאמר - תעשה מה שאומרים לך"', 'להסביר את הרציונל: הסיכון האמיתי הוא משברי ירוט שעלולים לפגוע גם במי שלא נפגע ישירות, ולכן יש ערך מציל-חיים בפעולה גם אם היא לא נוחה', 'להתעלם מהשאלה ולעבור הלאה', 'להפנות אותו למוקד 104 בלבד בלי לענות'],
+      correct: 1,
+      explain: 'בדיוק כמו בדוגמאות ההתנגדות שתועדו בשטח ("זה מביך", "זה מלכלך את הבגדים") - המענה הנכון הוא תמיד לפתוח בהסבר ה"למה" לפני ה"מה", כדי שהציבור יבין את הרציונל ולא רק יקבל פקודה.'
+    },
+    {
+      cat: "theory", type: "concept",
+      q: 'מהו סדר השלבים הנכון בתהליך ההסברה השלם המוביל להנעה לפעולה?',
+      options: ['יישום ← הבנה ← קבלה ← צריכה ← חשיפה', 'חשיפה ← צריכה ← קבלה ← הבנה ← יישום', 'צריכה ← חשיפה ← יישום ← הבנה ← קבלה', 'קבלה ← חשיפה ← צריכה ← יישום ← הבנה'],
+      correct: 1,
+      explain: 'התהליך הוא רצף: חשיפה (האם האזרח נחשף להנחיה) ← צריכה (מה המידע שצרך) ← קבלה (איך הוא מגיב למסר) ← הבנה (האם הבין) ← יישום (האם הוא מתנהג בהתאם).'
+    },
+    {
+      cat: "theory", type: "scenario",
+      q: 'סקר שבוצע אחרי אירוע הראה כי 90% מהציבור נחשפו להנחיות העדכניות, אך בפועל רק מיעוט מהם יישמו אותן נכון. לפי מודל שלבי ההנעה לפעולה, היכן קרוב לוודאי הפער?',
+      options: ['בשלב החשיפה - המידע כלל לא הגיע', 'בין שלב ההבנה לשלב היישום', 'אין כאן פער אמיתי, התוצאה תקינה', 'בשלב הצריכה בלבד'],
+      correct: 1,
+      explain: 'חשיפה גבוהה (90%) מצביעה על כך שהמידע הגיע. הפער בין "שמעו" לבין "פעלו נכון" ממוקם בדרך כלל בין הבנת ההנחיה ליישומה בפועל - שם צריך להתמקד המענה ההסברתי הבא.'
+    },
+    {
+      cat: "guidelines", type: "concept",
+      q: 'מהו ההבדל המרכזי בין "הנחיה מצילת חיים" ל"מדיניות ההתגוננות"?',
+      options: ['אין הבדל מהותי - אלה שני כינויים לאותו דבר', 'הנחיה מצילת חיים היא הכלל הקבוע (למשל זמן הכניסה למרחב המוגן); מדיניות ההתגוננות היא ההחלטה המשתנה על היקף הפעילות (מדרג הצבעים)', 'מדיניות ההתגוננות חלה רק על מוסדות חינוך', 'הנחיה מצילת חיים נקבעת ע"י הרשות המקומית בלבד'],
+      correct: 1,
+      explain: 'אלו שני כלים שונים לגמרי במטרה: ההנחיה המצילת חיים קבועה וידועה מראש (איך להתגונן), ואילו מדיניות ההתגוננות היא ההחלטה המשתנה יום-יום על היקף הפעילות המותר.'
+    },
+    {
+      cat: "guidelines", type: "concept",
+      q: 'כמה מדרגי מדיניות התגוננות (צבעים) קיימים?',
+      options: ['שניים', 'שלושה', 'ארבעה', 'שישה'],
+      correct: 2,
+      explain: 'ארבעה מדרגים: ירוק (פעילות מלאה), צהוב (פעילות חלקית), כתום (פעילות מצומצמת), אדום (פעילות הכרחית בלבד).'
+    },
+    {
+      cat: "guidelines", type: "scenario",
+      q: 'ראש רשות מקומית מבקש לפרסם הנחיה חדשה משלו, שלא אושרה ע"י פיקוד העורף, כי "זה הגיוני ודחוף". מה על קצין ההסברה לעשות?',
+      options: ['לאשר מיד - ראש הרשות הוא הגורם המוסמך ביותר באזורו', 'להסביר שאסור לפרסם הנחיה עצמאית ללא אישור פיקודי, ולהעלות את הבקשה לערוץ הפיקודי הרלוונטי', 'להתעלם מהבקשה ולא להגיב', 'לפרסם את ההנחיה בלי לציין שהיא מטעם הרשות'],
+      correct: 1,
+      explain: 'גם כשההנחיה נראית הגיונית ודחופה, הסמכות לקביעת תוכן הנחיות היא פיקודית בלבד. התפקיד של קצין ההסברה הוא להסביר זאת ולהעלות את הצורך לערוץ הנכון - לא לאשר בעצמו.'
+    },
+    {
+      cat: "guidelines", type: "concept",
+      q: 'מי מוסמך לקבוע את מדרג מדיניות ההתגוננות היומי?',
+      options: ['דובר הרשות המקומית', 'יחידת ההסברה הפיקודית / פיקוד העורף בלבד', 'קצין הסברה ביקל"ר', 'מועצת העיר'],
+      correct: 1,
+      explain: 'קביעת מדרג מדיניות ההתגוננות, בדיוק כמו תוכן המסרים, היא בסמכות פיקודית בלעדית ואינה ניתנת להחלטה ברמת הרשות המקומית.'
+    },
+    {
+      cat: "authority", type: "concept",
+      q: 'כמה מכלולים עיקריים פועלים ברשות מקומית בחירום, לפי המודל שהוצג בקורס?',
+      options: ['שלושה', 'ארבעה', 'שישה', 'שמונה'],
+      correct: 2,
+      explain: 'שישה מכלולים: אוכלוסייה, חינוך, מידע לציבור, הנדסה ותשתיות, לוגיסטיקה ותפעול, ומנהל כללי ומשא"ן.'
+    },
+    {
+      cat: "authority", type: "concept",
+      q: 'מהו הממשק המרכזי ביותר של קצין ההסברה בתוך מכלול מידע לציבור ברשות?',
+      options: ['מכלול הנדסה ותשתיות', 'דובר הרשות ומנהל מכלול המידע לציבור', 'מכלול לוגיסטיקה ותפעול', 'מוקד 106 בלבד'],
+      correct: 1,
+      explain: 'דובר הרשות ומנהל מכלול המידע לציבור הם הממשק המרכזי שקצין ההסברה עובד מולו באופן שוטף בתוך מכלול מידע לציבור.'
+    },
+    {
+      cat: "authority", type: "scenario",
+      q: 'מוקד 106 ברשות מקבל גל פניות חוזרות על אי-בהירות לגבי מיקום המרחב המוגן הציבורי הקרוב. מה תפקידו של קצין ההסברה במצב הזה?',
+      options: ['להתעלם - זה לא בתחום אחריותו', 'לנטר את מוקד 106 כסנסור להלכי רוח ולפערי מידע, ולפעול בהתאם - להעלות צורך או לעדכן מסרים', 'לסגור את המוקד עד להבהרה', 'להפנות את כל הפונים לרשות שכנה'],
+      correct: 1,
+      explain: 'ניטור מוקד 106 והפלטפורמות המקומיות כסנסור להלכי רוח ולפערי מידע הוא חלק מהצ\'קליסט הבסיסי של קצין ההסברה - הפערים שעולים משם צריכים להיות מועלים הלאה בזמן אמת.'
+    },
+    {
+      cat: "population", type: "concept",
+      q: 'מהו תפקידו של קה"א (קצין התנהגות אוכלוסייה)?',
+      options: ['אחראי בלעדי על תוכן ההסברה', 'קצין מטה מקצועי לנושא התנהגות האוכלוסייה בחירום - שותף תפקיד מרכזי של קצין ההסברה', 'מחליף את קצין ההסברה בעת הצורך', 'אחראי רק על לוגיסטיקה ברשות'],
+      correct: 1,
+      explain: 'קה"א הוא קצין מטה מקצועי (פיקוד/מחוז/נפה/יקל"ר) לתחום התנהגות האוכלוסייה בחירום, ומשלים את קצין ההסברה בידע ובכלים - לא מחליף אותו.'
+    },
+    {
+      cat: "population", type: "scenario",
+      q: 'קצין הסברה ביקל"ר מזהה שבקרב אוכלוסיית הקשישים במרחבו יש שיעור גבוה של אי-הבנת ההנחיות. מהי הפעולה המקצועית הנכונה?',
+      options: ['להתעלם - זו אוכלוסייה קטנה יחסית', "להתייעץ עם הקה\"א ולבנות יחד מענה הסברתי מותאם לאוכלוסייה עם צרכים מיוחדים", 'להמתין שהבעיה תיפתר מעצמה', 'להפסיק להפיץ הנחיות לכלל הציבור'],
+      correct: 1,
+      explain: 'זיהוי צרכים ייחודיים של אוכלוסיות עם רגישות מוגברת (כמו קשישים) הוא בדיוק המקרה שבו שיתוף הפעולה בין קצין ההסברה לקה"א יוצר ערך מוסף - מענה מותאם במקום מענה גנרי.'
+    },
+    {
+      cat: "population", type: "concept",
+      q: 'מהו מוקד המענה הטלפוני לאזרח הפתוח 24/7, המוזכר כערוץ מרכזי בחומרי הקורס?',
+      options: ['מוקד 100', 'מוקד 104', 'מוקד 101', 'מוקד 112'],
+      correct: 1,
+      explain: 'מוקד 104 הוא מרכז המענה לאזרח הפועל 24/7 במספר שפות, ומהווה ערוץ מרכזי להפצת מידע ולקבלת שו"ת מהציבור.'
+    },
+    {
+      cat: "theory", type: "scenario",
+      q: 'באמצע מערכה ממושכת, ניכר שהציבור מתעייף מהישמעות להנחיית נסיעה ברכב ("עצרו בצד הדרך"). מהי הגישה הנכונה של מערך ההסברה?',
+      options: ['להפסיק להזכיר את ההנחיה - היא כבר נאמרה בעבר', 'למקד מחדש את ההסברה ברציונל שמאחורי ההנחיה ("למה") כדי לחזק את ההישמעות מול השחיקה', 'להטיל סנקציות על מי שלא נשמע', 'להחליף את ההנחיה בהנחיה אחרת כדי לגוון'],
+      correct: 1,
+      explain: 'שחיקה במערכה ממושכת היא תופעה מוכרת. המענה שתועד בפועל הוא הפצת סרטוני שטח וחיזוק ההסבר על הרציונל שמאחורי ההנחיה - לא ויתור עליה ולא ענישה.'
+    },
+    {
+      cat: "role", type: "scenario",
+      q: 'בשכונה עם מקלטים משותפים מתגלה שאחד המקלטים נעול ו"הושתלט" עליו ע"י חלק מהדיירים. לפי מודל "מי קהל היעד / מה הצרכים / מה המסר / מהם ערוצי ההפצה", מה הצעד ההסברתי הראשון המתאים?',
+      options: ['לקרוא למשטרה באופן מיידי ללא בדיקה נוספת', 'לזהות את קהל היעד (דיירי הבניין), ולבנות מסר שמעודד אחריות דיירים לפתיחת המקלט וניקויו, דרך ערוץ הפצה מתאים (למשל קבוצת וואטסאפ שכונתית)', 'להתעלם - זו בעיה הנדסית ולא הסברתית', 'לפנות את הבניין כולו'],
+      correct: 1,
+      explain: 'זהו בדיוק יישום של המודל בן ארבע השאלות: קודם מזהים את קהל היעד הספציפי, מבינים את הצורך האמיתי (לא רק "המקלט נעול" אלא גם מודעות ואחריות דיירים), ואז בוחרים מסר וערוץ מתאימים - לא קופצים ישר לפתרון כפייתי.'
+    },
+    {
+      cat: "guidelines", type: "scenario",
+      q: 'דובר רשות מפרסם סרטון הסברה עצמאי, בלי סמל הרשות ובלי אישור פיקודי, בנימוק ש"המצב דחוף מדי לחכות לאישור". כיצד על קצין ההסברה ביקל"ר לנהוג?',
+      options: ['לשבח את היוזמה המהירה', 'לעצור את הפרסום ולהבהיר שזו חריגה אסורה - גם בדחיפות אין לפרסם ללא אישור פיקודי ותחת סמל הרשות', 'להצטרף לצילום סרטון דומה', 'זה לא בתחום אחריותו ואין צורך להתערב'],
+      correct: 1,
+      explain: 'אחד העקרונות החוזרים לאורך כל חומרי הקורס: לעולם אל תאשר תוכן עצמאי שלא תחת סמל הרשות וללא אישור פיקודי - גם לא במצבי דחיפות. זו בדיוק נקודת הכשל שהצ\'קליסט נועד למנוע.'
+    }
+  ];
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  // מערבב גם את סדר האפשרויות, תוך שמירה על אינדקס התשובה הנכונה
+  function shuffleOptions(question) {
+    var idxs = shuffle([0, 1, 2, 3]);
+    var newOptions = idxs.map(function (i) { return question.options[i]; });
+    var newCorrect = idxs.indexOf(question.correct);
+    return {
+      cat: question.cat, type: question.type, q: question.q,
+      options: newOptions, correct: newCorrect, explain: question.explain
+    };
+  }
+
+  function el(tag, attrs, html) {
+    var e = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    }
+    if (html !== undefined) e.innerHTML = html;
+    return e;
+  }
+
+  function initQuiz() {
+    var root = document.getElementById("quiz-app");
+    if (!root) return;
+
+    var state = { questions: [], current: 0, score: 0, answered: false, byCat: {} };
+
+    function renderStart() {
+      root.innerHTML = "";
+      var box = el("div", { class: "qr-card" });
+      var title = el("h3", {}, "בחרו נושאים למבחן");
+      box.appendChild(title);
+      var chipsWrap = el("div", { class: "quiz-chips", id: "quiz-chips" });
+      var selected = {};
+      Object.keys(CATEGORIES).forEach(function (key) {
+        selected[key] = true;
+        var chip = el("button", { type: "button", class: "quiz-chip active", "data-cat": key }, CATEGORIES[key]);
+        chip.addEventListener("click", function () {
+          selected[key] = !selected[key];
+          chip.classList.toggle("active", selected[key]);
+        });
+        chipsWrap.appendChild(chip);
+      });
+      box.appendChild(chipsWrap);
+      var p = el("p", { style: "color:var(--text-muted);font-size:0.88rem;margin-top:14px;" },
+        "המבחן כולל שאלות ידע וגם שאלות יישום (מקרי בוחן) - מה הייתם עושים בפועל במצב נתון.");
+      box.appendChild(p);
+      var startBtn = el("button", { type: "button", class: "quiz-start-btn" }, "התחילו מבחן");
+      startBtn.addEventListener("click", function () {
+        var cats = Object.keys(selected).filter(function (k) { return selected[k]; });
+        if (!cats.length) { cats = Object.keys(CATEGORIES); }
+        var pool = QUESTIONS.filter(function (q) { return cats.indexOf(q.cat) !== -1; });
+        state.questions = shuffle(pool).map(shuffleOptions);
+        state.current = 0;
+        state.score = 0;
+        state.byCat = {};
+        renderQuestion();
+      });
+      box.appendChild(startBtn);
+      root.appendChild(box);
+    }
+
+    function renderQuestion() {
+      state.answered = false;
+      var q = state.questions[state.current];
+      root.innerHTML = "";
+
+      var progress = el("div", { class: "quiz-progress" },
+        "שאלה " + (state.current + 1) + " מתוך " + state.questions.length +
+        ' <span class="quiz-cat-badge">' + CATEGORIES[q.cat] + (q.type === "scenario" ? " · מקרה בוחן" : "") + "</span>");
+      root.appendChild(progress);
+
+      var box = el("div", { class: "qr-card quiz-question-card" });
+      box.appendChild(el("h3", {}, q.q));
+
+      var optsWrap = el("div", { class: "quiz-options" });
+      q.options.forEach(function (opt, idx) {
+        var btn = el("button", { type: "button", class: "quiz-option" }, opt);
+        btn.addEventListener("click", function () {
+          if (state.answered) return;
+          state.answered = true;
+          var correct = idx === q.correct;
+          if (correct) state.score++;
+          if (!state.byCat[q.cat]) state.byCat[q.cat] = { correct: 0, total: 0 };
+          state.byCat[q.cat].total++;
+          if (correct) state.byCat[q.cat].correct++;
+
+          Array.prototype.forEach.call(optsWrap.children, function (b, i) {
+            b.classList.add("locked");
+            if (i === q.correct) b.classList.add("correct");
+            else if (i === idx) b.classList.add("wrong");
+          });
+
+          var explain = el("div", { class: "quiz-explain " + (correct ? "ok" : "no") },
+            (correct ? "✓ נכון. " : "✗ לא מדויק. ") + q.explain);
+          box.appendChild(explain);
+
+          var nextBtn = el("button", { type: "button", class: "quiz-next-btn" },
+            state.current < state.questions.length - 1 ? "השאלה הבאה ←" : "לסיכום התוצאה ←");
+          nextBtn.addEventListener("click", function () {
+            if (state.current < state.questions.length - 1) {
+              state.current++;
+              renderQuestion();
+            } else {
+              renderResult();
+            }
+          });
+          box.appendChild(nextBtn);
+        });
+        optsWrap.appendChild(btn);
+      });
+      box.appendChild(optsWrap);
+      root.appendChild(box);
+    }
+
+    function renderResult() {
+      root.innerHTML = "";
+      var total = state.questions.length;
+      var pct = Math.round((state.score / total) * 100);
+      var box = el("div", { class: "qr-card quiz-result-card" });
+      box.appendChild(el("h3", {}, "התוצאה שלכם"));
+      box.appendChild(el("div", { class: "quiz-score" }, state.score + " / " + total + '<span class="quiz-pct">(' + pct + "%)</span>"));
+
+      var table = el("table", { class: "compact" });
+      var thead = el("thead", {}, "<tr><th>נושא</th><th>תשובות נכונות</th></tr>");
+      table.appendChild(thead);
+      var tbody = el("tbody");
+      Object.keys(state.byCat).forEach(function (cat) {
+        var row = state.byCat[cat];
+        var tr = el("tr", {}, "<td>" + CATEGORIES[cat] + "</td><td>" + row.correct + " / " + row.total + "</td>");
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      var tableScroll = el("div", { class: "table-scroll" });
+      tableScroll.appendChild(table);
+      box.appendChild(tableScroll);
+
+      var retryBtn = el("button", { type: "button", class: "quiz-start-btn" }, "נסו שוב ←");
+      retryBtn.addEventListener("click", renderStart);
+      box.appendChild(retryBtn);
+      root.appendChild(box);
+    }
+
+    renderStart();
+  }
+
+  document.addEventListener("DOMContentLoaded", initQuiz);
+})();

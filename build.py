@@ -93,6 +93,7 @@ ICON_PATHS = {
     "pin": '<path d="M12 2a5 5 0 0 0-5 5c0 3.5 5 10 5 10s5-6.5 5-10a5 5 0 0 0-5-5z"/><circle cx="12" cy="7" r="1.8" fill="currentColor" stroke="none"/>',
     "home": '<path d="M4 11.2 12 4l8 7.2"/><path d="M6 10v10h5v-6h2v6h5V10"/>',
     "star": '<path d="M12 3.5l2.4 5 5.5.6-4.1 3.8 1.1 5.4L12 15.8l-4.9 2.5 1.1-5.4-4.1-3.8 5.5-.6L12 3.5z" fill="currentColor" stroke="none"/>',
+    "quiz": '<circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.8 2.8 0 1 1 3.8 2.6c-.7.3-1 .8-1 1.6"/><circle cx="12" cy="17" r="0.9" fill="currentColor" stroke="none"/>',
 }
 
 
@@ -118,6 +119,7 @@ def header_html(root, active_cat=None):
       <a href="{root}index.html">בית</a>
       <a href="{root}quick-ref.html">מדריך מהיר</a>
       <a href="{root}acronyms.html">מילון קיצורים</a>
+      <a href="{root}quiz.html">מבחן תרגול</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
     <div class="search-box">
