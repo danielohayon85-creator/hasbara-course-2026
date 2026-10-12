@@ -50,7 +50,7 @@ body {
 
 /* כותרות בפונט תצוגה ייעודי (סריף עברי טקסי) כדי שהאתר לא יקרא כעוד אתר
    תיעוד גנרי בגופן ברירת מחדל; טקסט גוף נשאר בגופן קריא לקריאה ממושכת. */
-h1, h2, .brand span:not(.badge), .hero h1, .section-title, .card h3, .qr-card h3 {
+h1, h2, h3, .brand span:not(.badge), .hero h1, .section-title {
   font-family: var(--font-display);
   font-weight: 700;
 }
