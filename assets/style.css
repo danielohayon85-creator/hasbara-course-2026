@@ -145,6 +145,7 @@ nav.main-nav a:hover, nav.main-nav a.active {
 
 .nav-toggle {
   display: none;
+  order: -1;
   background: rgba(255,255,255,0.12);
   border: none;
   color: #fff;
@@ -164,17 +165,17 @@ nav.main-nav a:hover, nav.main-nav a.active {
   inset: 0;
   background: var(--navy);
   z-index: 200;
-  padding: 90px 20px 30px;
+  padding: 76px 18px 30px;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   overflow-y: auto;
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu a {
   color: #fff;
-  padding: 14px 14px;
+  padding: 12px 14px;
   border-radius: 8px;
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 .mobile-menu a:hover, .mobile-menu a:active {
@@ -183,16 +184,22 @@ nav.main-nav a:hover, nav.main-nav a.active {
 }
 .mobile-menu-divider {
   color: #c7d4e4;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin: 16px 0 2px;
+  margin: 14px 0 2px;
   padding: 0 14px;
 }
 
 @media (max-width: 640px) {
   nav.main-nav { display: none !important; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .site-header .bar { gap: 10px; padding: 10px 0; }
+  .brand { font-size: 0.98rem; gap: 8px; }
+  .brand .badge { width: 30px; height: 30px; font-size: 1.05rem; }
+  .brand small { font-size: 0.66rem; }
+  .search-box { flex-basis: 100%; order: 3; min-width: 0; }
+  .cat-tabs a { font-size: 0.78rem; padding: 6px 11px; }
 }
 
 .search-box {
