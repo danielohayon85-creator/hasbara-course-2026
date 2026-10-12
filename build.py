@@ -365,13 +365,13 @@ INDEX_TEMPLATE = """<!doctype html>
 
 <main class="container">
   <h2 class="section-title" id="digests"><span class="n">★</span>תמציות - התחילו כאן</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כל תמצית מאחדת 2-4 מצגות מקור לעמוד אחד קצר וממוקד, עם קישורים למקורות המלאים בתחתית.</p>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">לכל תמצית 2-4 מצגות מקור, מאוחדות לעמוד אחד קצר וממוקד, עם קישור למקורות המלאים בתחתית העמוד.</p>
   <div class="cards-grid">
     {digest_cards}
   </div>
 
   <h2 class="section-title" id="archive" style="margin-top:56px;">📚 ארכיון מצגות המקור</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כל 14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, בדיקת ציטוט מדויק או הכנת שיעור. אלו אינן חומר הלימוד המומלץ לקריאה ראשונה - לכך נועדו התמציות למעלה.</p>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, אימות ציטוט מדויק או הכנת שיעור. לקריאה ראשונה מומלץ להתחיל בתמציות שלמעלה.</p>
   {categories}
 </main>
 
