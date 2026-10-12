@@ -72,6 +72,7 @@
     var items = [
       { href: root + "index.html", label: "🏠 בית" },
       { href: root + "quick-ref.html", label: "📌 מדריך מהיר" },
+      { href: root + "acronyms.html", label: "📖 מילון קיצורים" },
       { divider: "תמציות" },
       { href: root + "digests/role.html", label: "🎖️ תפקיד קצין ההסברה" },
       { href: root + "digests/theory.html", label: "📚 עקרונות ותורת ההסברה" },

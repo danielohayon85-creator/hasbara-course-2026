@@ -80,6 +80,7 @@ def header_html(root, active_cat=None):
     <nav class="main-nav">
       <a href="{root}index.html">בית</a>
       <a href="{root}quick-ref.html">מדריך מהיר</a>
+      <a href="{root}acronyms.html">מילון קיצורים</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
     <div class="search-box">
@@ -299,6 +300,29 @@ def build():
                 "section": d["title"], "docTitle": d["title"], "text": heading,
             })
 
+    # index the acronyms glossary page
+    acr_path = os.path.join(ROOT, "acronyms.html")
+    if os.path.exists(acr_path):
+        with open(acr_path, encoding="utf-8") as f:
+            acr_html = f.read()
+        search_index.append({
+            "title": "מילון ראשי תיבות", "url": "acronyms.html", "section": "מילון",
+            "docTitle": "מילון ראשי תיבות", "text": "מילון ראשי תיבות קיצורים פקע\"ר יקל\"ר ממ\"ד",
+        })
+        for m in re.finditer(r'<h3 id="([^"]+)">(.*?)</h3>', acr_html, re.S):
+            heading = re.sub(r"<[^>]+>", "", m.group(2)).strip()
+            search_index.append({
+                "title": heading, "url": f"acronyms.html#{m.group(1)}",
+                "section": "מילון ראשי תיבות", "docTitle": "מילון ראשי תיבות", "text": heading,
+            })
+        for m in re.finditer(r"<td><b>(.*?)</b></td><td>(.*?)</td>", acr_html.replace("\n", "")):
+            abbr = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+            mean = re.sub(r"<[^>]+>", "", m.group(2)).strip()
+            search_index.append({
+                "title": f"{abbr} - {mean}", "url": "acronyms.html",
+                "section": "מילון ראשי תיבות", "docTitle": "מילון ראשי תיבות", "text": abbr + " " + mean,
+            })
+
     with open(os.path.join(ROOT, "search-index.json"), "w", encoding="utf-8") as f:
         json.dump(search_index, f, ensure_ascii=False)
     print(f"wrote search-index.json ({len(search_index)} entries)")
@@ -331,7 +355,8 @@ INDEX_TEMPLATE = """<!doctype html>
       <div class="stat"><b>{n_sections}</b><span>סעיפים חיפושיים</span></div>
     </div>
     <div class="quicklinks">
-      <a href="quick-ref.html">📌 מדריך מהיר / מילון מונחים</a>
+      <a href="quick-ref.html">📌 מדריך מהיר</a>
+      <a href="acronyms.html">📖 מילון קיצורים</a>
       <a href="digests/role.html">🎖️ תפקיד הקצין</a>
       <a href="digests/guidelines.html">🛡️ הנחיות ומדיניות</a>
     </div>
