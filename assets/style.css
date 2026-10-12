@@ -1,24 +1,28 @@
 /* אתר ידע - קורס קציני הסברה 2026 */
 
 :root {
-  --navy: #10284a;
-  --navy-light: #1b3a66;
-  --blue: #1f6fb2;
-  --blue-light: #eaf3fb;
-  --orange: #e8832c;
-  --orange-dark: #c9681a;
-  --bg: #f5f7fa;
+  /* מתוך סבב עיצוב: ניווט מ"נייבי+כתום" גנרי (צבעי ברירת המחדל של כל אתר
+     SaaS/תיעוד) אל זהות חמה יותר - נייבי עמוק + זהב/ארד טקסי, על רקע שנהבי
+     חמים במקום אפור-כחלחל קר. */
+  --navy: #0e1f38;
+  --navy-light: #1c3a5e;
+  --blue: #3d6b8a;
+  --blue-light: #eef2ee;
+  --orange: #c0922f;
+  --orange-dark: #7a5a1f;
+  --bg: #f7f5ef;
   --card-bg: #ffffff;
-  --text: #1c2733;
-  --text-muted: #5b6b7c;
-  --border: #e1e6ec;
+  --text: #1e2430;
+  --text-muted: #686153;
+  --border: #e7e2d4;
   --green: #2e8b57;
   --red: #c0392b;
   --yellow: #d4a017;
   --radius: 10px;
-  --shadow: 0 1px 3px rgba(16, 40, 74, 0.08), 0 1px 2px rgba(16, 40, 74, 0.06);
-  --shadow-lg: 0 8px 24px rgba(16, 40, 74, 0.12);
+  --shadow: 0 1px 3px rgba(14, 31, 56, 0.08), 0 1px 2px rgba(14, 31, 56, 0.06);
+  --shadow-lg: 0 8px 24px rgba(14, 31, 56, 0.12);
   --max-width: 1180px;
+  --font-display: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
 }
 
 * { box-sizing: border-box; }
@@ -33,6 +37,13 @@ body {
   direction: rtl;
   line-height: 1.65;
   font-size: 16px;
+}
+
+/* כותרות בפונט תצוגה ייעודי (סריף עברי טקסי) כדי שהאתר לא יקרא כעוד אתר
+   תיעוד גנרי בגופן ברירת מחדל; טקסט גוף נשאר בגופן קריא לקריאה ממושכת. */
+h1, h2, .brand span:not(.badge), .hero h1, .section-title, .card h3, .qr-card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
 }
 
 a { color: var(--blue); text-decoration: none; }
@@ -84,7 +95,7 @@ header.site-header {
   flex-shrink: 0;
 }
 .cat-tabs a:hover { background: rgba(255,255,255,0.1); color: #fff; text-decoration: none; }
-.cat-tabs a.active { background: var(--orange); color: #fff; }
+.cat-tabs a.active { background: var(--orange-dark); color: #fff; }
 
 .site-header .bar {
   display: flex;
@@ -108,13 +119,14 @@ header.site-header {
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  background: var(--orange);
+  background: var(--orange-dark);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  color: #fff;
   flex-shrink: 0;
 }
+.brand .badge svg { width: 19px; height: 19px; }
 
 .brand small {
   display: block;
@@ -250,7 +262,7 @@ nav.main-nav a:hover, nav.main-nav a.active {
 
 /* ===== Hero ===== */
 .hero {
-  background: linear-gradient(135deg, var(--navy) 0%, #0b1d36 100%);
+  background: linear-gradient(135deg, var(--navy) 0%, #081526 100%);
   color: #fff;
   padding: 48px 0 56px;
   text-align: center;
@@ -293,7 +305,7 @@ main { padding: 36px 0 60px; }
 }
 
 .section-title .n {
-  background: var(--orange);
+  background: var(--orange-dark);
   color: #fff;
   border-radius: 50%;
   width: 28px;
@@ -381,7 +393,7 @@ main { padding: 36px 0 60px; }
   font-size: 0.9rem;
   font-weight: 600;
 }
-.quicklinks a:hover { background: var(--orange); text-decoration: none; }
+.quicklinks a:hover { background: var(--orange-dark); text-decoration: none; }
 
 /* ===== Topic page layout ===== */
 .topic-layout {
@@ -472,6 +484,59 @@ main { padding: 36px 0 60px; }
 }
 .topic-content hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
 
+/* תרשים שרשרת פיקוד - מחליף את הטקסט "A ← B ← C" השטוח בתצוגה גרפית */
+.chain-flow {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 16px 0 20px;
+  justify-content: center;
+}
+.chain-step {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 120px;
+  flex: 1 1 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+.chain-step.top { background: var(--orange-dark); }
+.chain-step.end { background: var(--navy-light); border: 2px solid var(--orange); }
+.chain-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.chain-arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  width: 22px;
+  height: 14px;
+  position: relative;
+}
+.chain-arrow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--orange);
+  clip-path: polygon(0% 50%, 70% 0%, 70% 35%, 100% 35%, 100% 65%, 70% 65%, 70% 100%);
+}
+@media (max-width: 720px) {
+  .chain-flow { flex-direction: column; align-items: stretch; }
+  .chain-arrow { width: 100%; height: 18px; transform: rotate(-90deg); margin: -2px 0; }
+}
+
 .table-scroll {
   position: relative;
   overflow-x: auto;
@@ -530,7 +595,7 @@ main { padding: 36px 0 60px; }
   color: #fff;
   font-weight: 600;
 }
-.topic-content tr:nth-child(even) td { background: #f8fafc; }
+.topic-content tr:nth-child(even) td { background: #faf8f1; }
 
 .topic-meta {
   display: flex;
@@ -547,7 +612,7 @@ main { padding: 36px 0 60px; }
   font-size: 0.78rem;
   font-weight: 600;
 }
-.pill.orange { background: #fdf0e3; color: var(--orange-dark); }
+.pill.orange { background: #f3ead4; color: var(--orange-dark); }
 
 .breadcrumb {
   font-size: 0.86rem;
@@ -573,7 +638,7 @@ main { padding: 36px 0 60px; }
   cursor: pointer;
   font-family: inherit;
 }
-.page-actions button:hover { background: var(--orange); color: #fff; }
+.page-actions button:hover { background: var(--orange-dark); color: #fff; }
 
 .topic-nav-footer {
   display: flex;
@@ -591,7 +656,7 @@ main { padding: 36px 0 60px; }
   border-radius: 8px;
   font-weight: 600;
 }
-.topic-nav-footer a:hover { text-decoration: none; background: var(--orange); color: #fff; }
+.topic-nav-footer a:hover { text-decoration: none; background: var(--orange-dark); color: #fff; }
 
 /* ===== Quick reference page ===== */
 .qr-grid {
@@ -632,7 +697,7 @@ main { padding: 36px 0 60px; }
   font-weight: 600;
 }
 .tl-red { background: var(--red); }
-.tl-orange { background: var(--orange); }
+.tl-orange { background: var(--orange-dark); }
 .tl-yellow { background: var(--yellow); color: #3a2c00; }
 .tl-green { background: var(--green); }
 
