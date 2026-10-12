@@ -382,6 +382,58 @@ main { padding: 36px 0 60px; }
 }
 .card .icon .icn { width: 21px; height: 21px; vertical-align: 0; }
 
+/* ספוט מיוחד - הדגשת הרצאה נבחרת מעל הארכיון הרגיל */
+.spotlight-card {
+  display: block;
+  margin: 28px 0 0;
+  padding: 24px 26px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  border-radius: var(--radius);
+  border: 1px solid var(--orange);
+  box-shadow: var(--shadow-lg);
+  color: #fff;
+  text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.spotlight-card:hover { transform: translateY(-2px); text-decoration: none; }
+.spotlight-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--orange);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.76rem;
+  padding: 4px 11px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.spotlight-card h3 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  color: #fff;
+}
+.spotlight-author {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--orange);
+}
+.spotlight-desc {
+  margin: 0 0 14px;
+  color: #c7d4e4;
+  font-size: 0.92rem;
+  max-width: 640px;
+}
+.spotlight-link {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  border-bottom: 2px solid var(--orange);
+  padding-bottom: 2px;
+}
+
 .card h3 { margin: 0; font-size: 1.05rem; color: var(--navy); }
 .card p { margin: 0; color: var(--text-muted); font-size: 0.88rem; flex-grow: 1; }
 .card a.card-link { font-size: 0.85rem; font-weight: 600; }

@@ -414,6 +414,14 @@ INDEX_TEMPLATE = """<!doctype html>
     {digest_cards}
   </div>
 
+  <a class="spotlight-card" href="topics/03.html">
+    <div class="spotlight-badge">{icon_star_badge} הרצאה מומלצת</div>
+    <h3>הסברה בחירום - אתגרים והנעה לפעולה</h3>
+    <p class="spotlight-author">סא"ל (במיל') שירן שמחי</p>
+    <p class="spotlight-desc">מודל מובנה בארבע שאלות להנעה לפעולה - מי קהל היעד, מה הצרכים, מה המסר ואילו ערוצי הפצה - עם דוגמאות אמיתיות מהשטח, שכונה אחר שכונה.</p>
+    <span class="spotlight-link">צפו בהרצאה המלאה ←</span>
+  </a>
+
   <h2 class="section-title" id="archive" style="margin-top:56px;">{icon_book2} ארכיון מצגות המקור</h2>
   <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, אימות ציטוט מדויק או הכנת שיעור. לקריאה ראשונה מומלץ להתחיל בתמציות שלמעלה.</p>
   {categories}
@@ -499,6 +507,7 @@ def write_index(categories, cat_docs, n_docs):
         icon_role=icon("role"),
         icon_guidelines=icon("guidelines"),
         icon_star=icon("star", size="13px"),
+        icon_star_badge=icon("star", size="14px"),
         icon_book2=icon("theory"),
     )
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
