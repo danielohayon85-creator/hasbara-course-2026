@@ -122,11 +122,59 @@
     if (active) active.scrollIntoView({ inline: "center", block: "nearest" });
   }
 
+  function initTableScroll() {
+    document.querySelectorAll(".table-scroll").forEach(function (wrap) {
+      var table = wrap.querySelector("table");
+      if (!table) return;
+      var wrapWidth = wrap.clientWidth;
+      if (!wrapWidth) return;
+
+      // Measure the table's true single-line content width (how wide it
+      // would need to be if nothing wrapped), independent of any min-width
+      // already set in CSS, to decide whether this specific table actually
+      // needs horizontal scrolling on this screen.
+      var prevWhiteSpace = table.style.whiteSpace;
+      var prevWidth = table.style.width;
+      var prevMinWidth = table.style.minWidth;
+      table.style.whiteSpace = "nowrap";
+      table.style.width = "auto";
+      table.style.minWidth = "0";
+      var naturalWidth = table.scrollWidth;
+      table.style.whiteSpace = prevWhiteSpace;
+
+      if (naturalWidth <= wrapWidth + 2) {
+        table.style.width = "100%";
+        table.style.minWidth = "0";
+        wrap.classList.remove("scrollable");
+      } else {
+        table.style.width = prevWidth;
+        table.style.minWidth = Math.ceil(Math.min(naturalWidth, wrapWidth * 2)) + "px";
+        wrap.classList.add("scrollable");
+
+        var hint = wrap.previousElementSibling;
+        if (!hint || !hint.classList || !hint.classList.contains("scroll-hint")) {
+          hint = document.createElement("div");
+          hint.className = "scroll-hint";
+          hint.textContent = "⟷ ניתן לגלול בטבלה כדי לצפות בכל העמודות";
+          wrap.parentNode.insertBefore(hint, wrap);
+        }
+        wrap.addEventListener("scroll", function onScroll() {
+          if (Math.abs(wrap.scrollLeft) > 8) {
+            hint.classList.add("hide");
+            wrap.removeEventListener("scroll", onScroll);
+          }
+        });
+      }
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
     initMobileMenu();
     initPrintButtons();
     initArchiveAccordion();
     initActiveTabScroll();
+    initTableScroll();
+    window.addEventListener("resize", initTableScroll);
   });
 })();

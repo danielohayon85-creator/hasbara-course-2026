@@ -473,13 +473,22 @@ main { padding: 36px 0 60px; }
 .topic-content hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
 
 .table-scroll {
+  position: relative;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin: 16px 0;
   border-radius: 8px;
+  scrollbar-width: thin;
 }
+.table-scroll::-webkit-scrollbar { height: 6px; }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 .table-scroll table { margin: 0; }
 
+/* On mobile, a table only gets forced to a minimum width (and thus a horizontal
+   scrollbar) when assets/app.js measures that its content actually needs more
+   room than the screen; a table whose content fits is left at width:100% so it
+   wraps normally instead of being dragged sideways for no reason. These values
+   are the no-JS fallback (and the desktop baseline, where there is room anyway). */
 .topic-content table, .qr-card table {
   width: 100%;
   min-width: 540px;
@@ -487,6 +496,29 @@ main { padding: 36px 0 60px; }
   font-size: 0.9rem;
 }
 .table-scroll.compact table, table.compact { min-width: 460px; }
+
+.table-scroll.scrollable::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 26px;
+  background: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.08));
+  pointer-events: none;
+  border-radius: 0 0 0 8px;
+}
+.scroll-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin: -10px 0 12px;
+  opacity: 1;
+  max-height: 20px;
+  transition: opacity .25s, max-height .25s, margin .25s;
+}
+.scroll-hint.hide { opacity: 0; max-height: 0; margin: 0; overflow: hidden; }
+@media print {
+  .scroll-hint { display: none; }
+}
 .topic-content th, .topic-content td {
   border: 1px solid var(--border);
   padding: 8px 10px;
