@@ -47,14 +47,44 @@ img { max-width: 100%; }
 }
 
 /* ===== Header ===== */
-header.site-header {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-  color: #fff;
+.site-head-wrap {
   position: sticky;
   top: 0;
   z-index: 50;
   box-shadow: var(--shadow);
 }
+
+header.site-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: #fff;
+}
+
+.cat-tabs {
+  background: #0d2240;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.cat-tabs::-webkit-scrollbar { display: none; }
+.cat-tabs .inner {
+  display: flex;
+  gap: 4px;
+  padding: 8px 20px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  white-space: nowrap;
+}
+.cat-tabs a {
+  color: #c7d4e4;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 7px 13px;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+.cat-tabs a:hover { background: rgba(255,255,255,0.1); color: #fff; text-decoration: none; }
+.cat-tabs a.active { background: var(--orange); color: #fff; }
 
 .site-header .bar {
   display: flex;
@@ -361,7 +391,7 @@ main { padding: 36px 0 60px; }
 
 .topic-toc {
   position: sticky;
-  top: 86px;
+  top: 128px;
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -411,14 +441,14 @@ main { padding: 36px 0 60px; }
   margin: 34px 0 12px;
   padding-right: 12px;
   border-right: 4px solid var(--orange);
-  scroll-margin-top: 90px;
+  scroll-margin-top: 132px;
 }
 
 .topic-content h3 {
   color: var(--navy-light);
   font-size: 1.08rem;
   margin: 22px 0 8px;
-  scroll-margin-top: 90px;
+  scroll-margin-top: 132px;
 }
 
 .topic-content p { margin: 10px 0; }
@@ -586,7 +616,7 @@ footer.site-footer a { color: #fff; }
 
 /* print */
 @media print {
-  header.site-header, footer.site-footer, .topic-toc, .topic-nav-footer, .search-box, .page-actions, .mobile-menu { display: none !important; }
+  header.site-header, footer.site-footer, .topic-toc, .topic-nav-footer, .search-box, .page-actions, .mobile-menu, .cat-tabs { display: none !important; }
   .topic-layout { grid-template-columns: 1fr; }
   .topic-content { box-shadow: none; border: none; padding: 0; }
   body { background: #fff; }

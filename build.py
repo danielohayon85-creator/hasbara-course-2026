@@ -65,8 +65,13 @@ DIGESTS = [
 MD = markdown.Markdown(extensions=["tables", "fenced_code", "sane_lists", "toc"],
                         extension_configs={"toc": {"permalink": False}})
 
-def header_html(root):
-    return f"""<header class="site-header">
+def header_html(root, active_cat=None):
+    tabs = "\n      ".join(
+        f'<a href="{root}digests/{d["id"]}.html" class="{"active" if d["id"] == active_cat else ""}">{d["icon"]} {d["title"]}</a>'
+        for d in DIGESTS
+    )
+    return f"""<div class="site-head-wrap">
+<header class="site-header">
   <div class="container bar">
     <a class="brand" href="{root}index.html">
       <span class="badge">🎖️</span>
@@ -83,6 +88,10 @@ def header_html(root):
     </div>
   </div>
 </header>
+<nav class="cat-tabs"><div class="inner">
+      {tabs}
+</div></nav>
+</div>
 <nav class="mobile-menu" id="mobile-menu"></nav>"""
 
 
@@ -91,6 +100,7 @@ TOPIC_TEMPLATE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8E%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <title>{title} | אתר הידע - קורס קציני הסברה 2026</title>
 <meta name="description" content="{desc}">
 <link rel="stylesheet" href="../assets/style.css">
@@ -255,7 +265,7 @@ def build():
             body=wrap_tables(html_body),
             prev_link=prev_link,
             next_link=next_link,
-            header=header_html("../"),
+            header=header_html("../", active_cat=cat["id"]),
         )
         out_path = os.path.join(TOPICS_OUT, f"{d['id']}.html")
         with open(out_path, "w", encoding="utf-8") as f:
@@ -303,6 +313,7 @@ INDEX_TEMPLATE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8E%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <title>אתר הידע - קורס קציני הסברה 2026</title>
 <meta name="description" content="אתר ידע פנימי לקורס קציני הסברה 2026 - עקרונות הסברה, הנחיות מצילות חיים, מדיניות ההתגוננות, מבנה הרשות המקומית ומערך האוכלוסייה.">
 <link rel="stylesheet" href="assets/style.css">

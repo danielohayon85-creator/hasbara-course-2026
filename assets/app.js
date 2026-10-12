@@ -116,10 +116,16 @@
     });
   }
 
+  function initActiveTabScroll() {
+    var active = document.querySelector(".cat-tabs a.active");
+    if (active) active.scrollIntoView({ inline: "center", block: "nearest" });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
     initMobileMenu();
     initPrintButtons();
     initArchiveAccordion();
+    initActiveTabScroll();
   });
 })();
