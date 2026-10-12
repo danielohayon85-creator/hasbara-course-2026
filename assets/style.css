@@ -27,6 +27,15 @@
 
 * { box-sizing: border-box; }
 
+/* אייקוני SVG מוטבעים (ראו build.py: icon()) - מתנהגים כמו תו טקסט, כך
+   שאפשר להטביע אותם בכל הקשר (טאב, pill, כפתור, כותרת) בלי CSS ייעודי. */
+.icn {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -367,10 +376,11 @@ main { padding: 36px 0 60px; }
   width: 42px; height: 42px;
   border-radius: 9px;
   background: var(--blue-light);
+  color: var(--blue);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
   margin-bottom: 4px;
 }
+.card .icon .icn { width: 21px; height: 21px; vertical-align: 0; }
 
 .card h3 { margin: 0; font-size: 1.05rem; color: var(--navy); }
 .card p { margin: 0; color: var(--text-muted); font-size: 0.88rem; flex-grow: 1; }

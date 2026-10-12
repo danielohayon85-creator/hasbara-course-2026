@@ -14,50 +14,50 @@ SRC = os.path.join(ROOT, "content-source")
 TOPICS_OUT = os.path.join(ROOT, "topics")
 
 CATEGORIES = [
-    {"id": "role", "title": "תפקיד קצין ההסברה", "icon": "🎖️",
+    {"id": "role", "title": "תפקיד קצין ההסברה", "icon": "role",
      "desc": "מי קצין ההסברה, מה תפקידו בכל דרג, וכיצד הוא פועל מול הרשות המקומית."},
-    {"id": "theory", "title": "עקרונות ותורת ההסברה", "icon": "📚",
+    {"id": "theory", "title": "עקרונות ותורת ההסברה", "icon": "theory",
      "desc": "מהי הסברה, המודלים המרכזיים, עקרונות היסוד ולקחים מהשטח."},
-    {"id": "guidelines", "title": "הנחיות מצילות חיים ומדיניות ההתגוננות", "icon": "🛡️",
+    {"id": "guidelines", "title": "הנחיות מצילות חיים ומדיניות ההתגוננות", "icon": "guidelines",
      "desc": "ההבדל בין הנחיה מצילת חיים למדיניות התגוננות, מדרגי המדיניות וההגדרות המחייבות."},
-    {"id": "authority", "title": "הרשות המקומית ומטה החירום", "icon": "🏛️",
+    {"id": "authority", "title": "הרשות המקומית ומטה החירום", "icon": "authority",
      "desc": "מבנה הרשות המקומית, המכלולים, ומכלול המידע לציבור."},
-    {"id": "population", "title": "מערך האוכלוסייה, כלים ופלטפורמות", "icon": "🧰",
+    {"id": "population", "title": "מערך האוכלוסייה, כלים ופלטפורמות", "icon": "population",
      "desc": "מבנה מערך האוכלוסייה בפיקוד העורף, הקה\"א, והכלים הטכנולוגיים העומדים לרשות ההסברה."},
 ]
 
 # doc_id -> (category_id, icon, order_in_category, short description)
 DOC_META = {
-    "01": ("population", "👥", 3, "תפקיד הקה\"א, מערך התנהגות אוכלוסייה, אוכלוסיות עם צרכים מיוחדים וקהילה בחירום."),
-    "02": ("guidelines", "🚨", 1, "מהי הנחיה מצילת חיים, פלטפורמות ההפצה ותרחישים לדוגמה."),
-    "03": ("theory", "📣", 1, "תשתית התנהגותית, המעגל הזהוב, מודל 4 השלבים ודוגמאות הנעה לפעולה."),
-    "04": ("guidelines", "⚖️", 2, "הסמכות החוקית, מדרגי ההתגוננות וקריטריונים לקביעת המדיניות היומית."),
-    "05": ("population", "🧩", 1, "ייעוד ומבנה מערך האוכלוסייה, נתוני \"שאגת האריה\" ועקרונות ההסברה."),
-    "06": ("authority", "🏛️", 1, "אחריות, מבנה ארגוני, כשירויות וכלים להכנת הרשות המקומית לחירום."),
-    "07": ("population", "🧰", 2, "מרכז המענה 104, פלטפורמות דיגיטליות, דסקים ייעודיים וניטור ברשות."),
-    "08": ("authority", "📞", 2, "מבנה מכלול המידע לציבור, איוש, משימות וממשקים מול קצין ההסברה ביקל\"ר."),
-    "10": ("theory", "🎯", 2, "שמונת עקרונות ההסברה, מודל האסטרטגיה, תיאום ציפיות וסמכויות הפצה."),
-    "11": ("theory", "⚔️", 4, "לקחים מ\"עם כלביא\" ו\"שאגת האריה\": מוכנות, דיוק ותוצאה בשטח."),
-    "12": ("role", "🎖️", 2, "תפקיד קצין ההסברה במחוז, בנפה וביקל\"ר: ניתוח אוכלוסייה, תיעדוף מאמץ ההסברה ומענה אופרטיבי בכל דרג."),
-    "13": ("theory", "✅", 3, "עשרה עקרונות יסוד תמציתיים לדוברי רשויות ומנהלי מכלולי מידע לציבור."),
-    "14": ("guidelines", "📋", 3, "מסמך המדיניות המלא: הגדרות, מדרגים לפי תחום, ונספחי הפעלה."),
-    "09": ("role", "🧭", 1, "ייעוד ומבנה מערך ההסברה האורכי - מיחידת ההסברה הפיקודית ועד קצין ההסברה ביקל\"ר."),
+    "01": ("population", "people", 3, "תפקיד הקה\"א, מערך התנהגות אוכלוסייה, אוכלוסיות עם צרכים מיוחדים וקהילה בחירום."),
+    "02": ("guidelines", "alert", 1, "מהי הנחיה מצילת חיים, פלטפורמות ההפצה ותרחישים לדוגמה."),
+    "03": ("theory", "megaphone", 1, "תשתית התנהגותית, המעגל הזהוב, מודל 4 השלבים ודוגמאות הנעה לפעולה."),
+    "04": ("guidelines", "scale", 2, "הסמכות החוקית, מדרגי ההתגוננות וקריטריונים לקביעת המדיניות היומית."),
+    "05": ("population", "puzzle", 1, "ייעוד ומבנה מערך האוכלוסייה, נתוני \"שאגת האריה\" ועקרונות ההסברה."),
+    "06": ("authority", "authority", 1, "אחריות, מבנה ארגוני, כשירויות וכלים להכנת הרשות המקומית לחירום."),
+    "07": ("population", "population", 2, "מרכז המענה 104, פלטפורמות דיגיטליות, דסקים ייעודיים וניטור ברשות."),
+    "08": ("authority", "phone", 2, "מבנה מכלול המידע לציבור, איוש, משימות וממשקים מול קצין ההסברה ביקל\"ר."),
+    "10": ("theory", "target", 2, "שמונת עקרונות ההסברה, מודל האסטרטגיה, תיאום ציפיות וסמכויות הפצה."),
+    "11": ("theory", "swords", 4, "לקחים מ\"עם כלביא\" ו\"שאגת האריה\": מוכנות, דיוק ותוצאה בשטח."),
+    "12": ("role", "role", 2, "תפקיד קצין ההסברה במחוז, בנפה וביקל\"ר: ניתוח אוכלוסייה, תיעדוף מאמץ ההסברה ומענה אופרטיבי בכל דרג."),
+    "13": ("theory", "checkcircle", 3, "עשרה עקרונות יסוד תמציתיים לדוברי רשויות ומנהלי מכלולי מידע לציבור."),
+    "14": ("guidelines", "clipboard", 3, "מסמך המדיניות המלא: הגדרות, מדרגים לפי תחום, ונספחי הפעלה."),
+    "09": ("role", "compass", 1, "ייעוד ומבנה מערך ההסברה האורכי - מיחידת ההסברה הפיקודית ועד קצין ההסברה ביקל\"ר."),
 }
 
 DIGESTS = [
-    {"id": "role", "icon": "🎖️", "title": "תפקיד קצין ההסברה",
+    {"id": "role", "icon": "role", "title": "תפקיד קצין ההסברה",
      "desc": "מי קצין ההסברה, מה תפקידו בכל דרג, מודל אקטיבי מול פסיבי, וצ'קליסט.",
      "url": "digests/role.html"},
-    {"id": "theory", "icon": "📚", "title": "עקרונות ותורת ההסברה",
-     "desc": "הגדרת הסברה, המעגל הזהוב, עקרונות היסוד (גרסה מאוחדת) ומודל ההנעה לפעולה.",
+    {"id": "theory", "icon": "theory", "title": "עקרונות ותורת ההסברה",
+     "desc": "הגדרת הסברה, המעגל הזהוב, עקרונות היסוד ומודל ההנעה לפעולה.",
      "url": "digests/theory.html"},
-    {"id": "guidelines", "icon": "🛡️", "title": "הנחיות ומדיניות ההתגוננות",
+    {"id": "guidelines", "icon": "guidelines", "title": "הנחיות ומדיניות ההתגוננות",
      "desc": "ההבדל בין הנחיה מצילת חיים למדיניות, הסמכות החוקית, ותהליך קביעת המדיניות היומי.",
      "url": "digests/guidelines.html"},
-    {"id": "authority", "icon": "🏛️", "title": "הרשות המקומית ומטה החירום",
+    {"id": "authority", "icon": "authority", "title": "הרשות המקומית ומטה החירום",
      "desc": "שישה המכלולים, ומכלול המידע לציבור בפירוט - הממשק המרכזי שלך.",
      "url": "digests/authority.html"},
-    {"id": "population", "icon": "🧰", "title": "מערך האוכלוסייה וכלים",
+    {"id": "population", "icon": "population", "title": "מערך האוכלוסייה וכלים",
      "desc": "מבנה מערך האוכלוסייה, תפקיד הקה\"א, והכלים העומדים לרשות ההסברה.",
      "url": "digests/population.html"},
 ]
@@ -65,9 +65,46 @@ DIGESTS = [
 MD = markdown.Markdown(extensions=["tables", "fenced_code", "sane_lists", "toc"],
                         extension_configs={"toc": {"permalink": False}})
 
+# ספריית אייקוני SVG אחידה (קו, currentColor) שמחליפה את האימוג'ים -
+# אותו שפה ויזואלית בכל מקום באתר, במקום תמהיל אקראי של סמלי מערכת ההפעלה.
+ICON_PATHS = {
+    "role": '<path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/>'
+            '<path d="M12 7.4l1.2 2.5 2.8.4-2 1.9.5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-1.9 2.8-.4L12 7.4z" fill="currentColor" stroke="none"/>',
+    "theory": '<path d="M4 5.6c1.8-1 4.3-1 8 .6 3.7-1.6 6.2-1.6 8-.6v13c-1.8-1-4.3-1-8 .6-3.7-1.6-6.2-1.6-8-.6v-13z"/><path d="M12 6.2v13"/>',
+    "guidelines": '<path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/><path d="M8.6 11.6l2.3 2.3 4.4-4.6"/>',
+    "authority": '<path d="M3 9.2 12 4l9 5.2"/><path d="M4.3 9.6V20M19.7 9.6V20"/><path d="M7.6 9.6V20M11 9.6V20M13 9.6V20M16.4 9.6V20"/><path d="M3 20h18"/>',
+    "population": '<rect x="3" y="9.5" width="18" height="10" rx="1.5"/><path d="M8.2 9.5V6.8A1.8 1.8 0 0 1 10 5h4a1.8 1.8 0 0 1 1.8 1.8v2.7"/><path d="M3 14h18"/>',
+    "people": '<circle cx="9" cy="8.2" r="2.4"/><path d="M3.8 19c0-3 2.3-5.2 5.2-5.2s5.2 2.2 5.2 5.2"/><circle cx="17" cy="9.4" r="2"/><path d="M14.8 19c.2-2.4 1.7-4.2 3.6-4.6"/>',
+    "alert": '<path d="M12 4.2 21 20H3L12 4.2z"/><path d="M12 10.2v3.8"/><circle cx="12" cy="16.6" r="0.9" fill="currentColor" stroke="none"/>',
+    "megaphone": '<path d="M3 10v4h3l9 4V6l-9 4H3z"/><path d="M18.2 9a4.2 4.2 0 0 1 0 6"/>',
+    "scale": '<path d="M12 3v18"/><path d="M6.5 7h11"/><path d="M8.6 21h6.8"/><path d="M6.5 7l-3 5.6a3 3 0 0 0 6 0L6.5 7z"/><path d="M17.5 7l-3 5.6a3 3 0 0 0 6 0L17.5 7z"/>',
+    "puzzle": '<path d="M4 9h3.3a1.5 1.5 0 1 1 0 3H4v6h6v-3.3a1.5 1.5 0 1 1 3 0V18h6v-6h-3.3a1.5 1.5 0 1 1 0-3H19V4h-6v3.3a1.5 1.5 0 1 1-3 0V4H4v5z"/>',
+    "phone": '<path d="M5 4h3.2l1.3 4.4-2 1.6a12 12 0 0 0 6.5 6.5l1.6-2 4.4 1.3V19a2 2 0 0 1-2 2C10.8 21 3 13.2 3 6a2 2 0 0 1 2-2z"/>',
+    "target": '<circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>',
+    "swords": '<path d="M4 4l16 16M20 4L4 20"/><path d="M4 4l2.6.3M20 4l-2.6.3M4 20l2.6-.3M20 20l-2.6-.3"/>',
+    "checkcircle": '<circle cx="12" cy="12" r="9"/><path d="M7.5 12.4l3 3 6-6.4"/>',
+    "clipboard": '<rect x="5" y="4.6" width="14" height="17" rx="2"/><rect x="9" y="3" width="6" height="3" rx="1"/><path d="M8.5 11h7M8.5 14.5h7M8.5 18h4.5"/>',
+    "compass": '<circle cx="12" cy="12" r="9"/><path d="M15.4 8.6l-2 5-5 2 2-5 5-2z" fill="currentColor" stroke="none"/>',
+    "pulse": '<path d="M3 12h4l2-6.5 4 13 2-6.5h6"/>',
+    "monitor": '<rect x="3" y="4.2" width="18" height="12.4" rx="1.5"/><path d="M8 20h8M12 16.6v3.4"/>',
+    "mobile": '<rect x="7.3" y="2.5" width="9.4" height="19" rx="2"/><path d="M11 18.2h2"/>',
+    "media": '<rect x="3" y="7" width="13" height="11" rx="1.5"/><path d="M16 10.4l5-2.4v9l-5-2.4"/>',
+    "printer": '<path d="M6.2 9V4.2h11.6V9"/><rect x="4.5" y="9" width="15" height="7" rx="1.5"/><rect x="7" y="14" width="10" height="7" rx="1"/>',
+    "pin": '<path d="M12 2a5 5 0 0 0-5 5c0 3.5 5 10 5 10s5-6.5 5-10a5 5 0 0 0-5-5z"/><circle cx="12" cy="7" r="1.8" fill="currentColor" stroke="none"/>',
+    "home": '<path d="M4 11.2 12 4l8 7.2"/><path d="M6 10v10h5v-6h2v6h5V10"/>',
+    "star": '<path d="M12 3.5l2.4 5 5.5.6-4.1 3.8 1.1 5.4L12 15.8l-4.9 2.5 1.1-5.4-4.1-3.8 5.5-.6L12 3.5z" fill="currentColor" stroke="none"/>',
+}
+
+
+def icon(name, size=None):
+    style = f' style="width:{size};height:{size}"' if size else ""
+    return (f'<svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            f'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"{style} aria-hidden="true">'
+            f'{ICON_PATHS[name]}</svg>')
+
 def header_html(root, active_cat=None):
     tabs = "\n      ".join(
-        f'<a href="{root}digests/{d["id"]}.html" class="{"active" if d["id"] == active_cat else ""}">{d["icon"]} {d["title"]}</a>'
+        f'<a href="{root}digests/{d["id"]}.html" class="{"active" if d["id"] == active_cat else ""}">{icon(d["icon"])} {d["title"]}</a>'
         for d in DIGESTS
     )
     return f"""<div class="site-head-wrap">
@@ -129,7 +166,7 @@ TOPIC_TEMPLATE = """<!doctype html>
         <span class="pill orange">{source_pages} שקפי מקור</span>
       </div>
       <div class="page-actions">
-        <button data-print>🖨️ הדפס / שמור כ-PDF</button>
+        <button data-print>{icon_print} הדפס / שמור כ-PDF</button>
       </div>
       {body}
 
@@ -203,10 +240,10 @@ def build():
         meta, body = parse_doc(path)
         title = meta.get("title", f"מסמך {doc_id}")
         source_pages = meta.get("source_pages", "?")
-        cat_id, icon, order, short_desc = DOC_META[doc_id]
+        cat_id, icon_key, order, short_desc = DOC_META[doc_id]
         docs.append({
             "id": doc_id, "title": title, "source_pages": source_pages,
-            "cat_id": cat_id, "icon": icon, "order": order, "short_desc": short_desc,
+            "cat_id": cat_id, "icon": icon_key, "order": order, "short_desc": short_desc,
             "body_md": body,
         })
 
@@ -263,7 +300,8 @@ def build():
             desc=d["short_desc"],
             cat_id=cat["id"],
             cat_title=cat["title"],
-            cat_icon=cat["icon"],
+            cat_icon=icon(cat["icon"]),
+            icon_print=icon("printer"),
             source_pages=d["source_pages"],
             toc="\n        ".join(toc_html_items),
             body=wrap_tables(html_body),
@@ -353,7 +391,7 @@ INDEX_TEMPLATE = """<!doctype html>
 
 <div class="hero">
   <div class="container">
-    <h1>חומר הדרכה לקורס קציני הסברה 2026</h1>
+    <h1>כל מה שקצין הסברה צריך לדעת - במקום אחד</h1>
     <p>חמש תמציות ממוקדות - מה שבאמת צריך לדעת. לעיון מעמיק בכל שקף מהמקור, ראו את ארכיון המצגות בתחתית העמוד.</p>
     <div class="stats">
       <div class="stat"><b>5</b><span>תמציות מאוחדות</span></div>
@@ -361,22 +399,22 @@ INDEX_TEMPLATE = """<!doctype html>
       <div class="stat"><b>{n_sections}</b><span>סעיפים חיפושיים</span></div>
     </div>
     <div class="quicklinks">
-      <a href="quick-ref.html">📌 מדריך מהיר</a>
-      <a href="acronyms.html">📖 מילון קיצורים</a>
-      <a href="digests/role.html">🎖️ תפקיד הקצין</a>
-      <a href="digests/guidelines.html">🛡️ הנחיות ומדיניות</a>
+      <a href="quick-ref.html">{icon_pin} מדריך מהיר</a>
+      <a href="acronyms.html">{icon_book} מילון קיצורים</a>
+      <a href="digests/role.html">{icon_role} תפקיד הקצין</a>
+      <a href="digests/guidelines.html">{icon_guidelines} הנחיות ומדיניות</a>
     </div>
   </div>
 </div>
 
 <main class="container">
-  <h2 class="section-title" id="digests"><span class="n">★</span>תמציות - התחילו כאן</h2>
+  <h2 class="section-title" id="digests"><span class="n">{icon_star}</span>התחילו כאן: חמש תמציות</h2>
   <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">לכל תמצית 2-4 מצגות מקור, מאוחדות לעמוד אחד קצר וממוקד, עם קישור למקורות המלאים בתחתית העמוד.</p>
   <div class="cards-grid">
     {digest_cards}
   </div>
 
-  <h2 class="section-title" id="archive" style="margin-top:56px;">📚 ארכיון מצגות המקור</h2>
+  <h2 class="section-title" id="archive" style="margin-top:56px;">{icon_book2} ארכיון מצגות המקור</h2>
   <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, אימות ציטוט מדויק או הכנת שיעור. לקריאה ראשונה מומלץ להתחיל בתמציות שלמעלה.</p>
   {categories}
 </main>
@@ -424,7 +462,7 @@ def write_index(categories, cat_docs, n_docs):
         if not docs:
             continue
         cards = "\n".join(
-            CARD_TEMPLATE.format(id=d["id"], icon=d["icon"], title=d["title"],
+            CARD_TEMPLATE.format(id=d["id"], icon=icon(d["icon"]), title=d["title"],
                                   desc=d["short_desc"], pages=d["source_pages"])
             for d in docs
         )
@@ -433,7 +471,7 @@ def write_index(categories, cat_docs, n_docs):
   <div class="archive-group" id="cat-{c['id']}">
     <button class="archive-toggle" aria-expanded="false" aria-controls="{body_id}">
       <span class="n" style="background:var(--navy);">{idx}</span>
-      <span>{c['icon']} {c['title']}</span>
+      <span>{icon(c['icon'])} {c['title']}</span>
       <span class="chev">▾</span>
     </button>
     <div class="archive-body" id="{body_id}">
@@ -446,7 +484,7 @@ def write_index(categories, cat_docs, n_docs):
 """)
 
     digest_cards = "\n".join(
-        DIGEST_CARD_TEMPLATE.format(url=d["url"], icon=d["icon"], title=d["title"], desc=d["desc"])
+        DIGEST_CARD_TEMPLATE.format(url=d["url"], icon=icon(d["icon"]), title=d["title"], desc=d["desc"])
         for d in DIGESTS
     )
 
@@ -456,6 +494,12 @@ def write_index(categories, cat_docs, n_docs):
         digest_cards=digest_cards,
         categories="\n".join(cat_blocks),
         header=header_html("./"),
+        icon_pin=icon("pin"),
+        icon_book=icon("theory"),
+        icon_role=icon("role"),
+        icon_guidelines=icon("guidelines"),
+        icon_star=icon("star", size="13px"),
+        icon_book2=icon("theory"),
     )
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(html)

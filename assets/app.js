@@ -64,21 +64,37 @@
     });
   }
 
+  // אותה ספריית SVG שמוגדרת ב-build.py (ICON_PATHS) - מוטבעת גם כאן כי
+  // תפריט הנייד נבנה בצד הלקוח, לא בזמן ה-build.
+  var ICN = {
+    home: '<path d="M4 11.2 12 4l8 7.2"/><path d="M6 10v10h5v-6h2v6h5V10"/>',
+    pin: '<path d="M12 2a5 5 0 0 0-5 5c0 3.5 5 10 5 10s5-6.5 5-10a5 5 0 0 0-5-5z"/><circle cx="12" cy="7" r="1.8" fill="currentColor" stroke="none"/>',
+    theory: '<path d="M4 5.6c1.8-1 4.3-1 8 .6 3.7-1.6 6.2-1.6 8-.6v13c-1.8-1-4.3-1-8 .6-3.7-1.6-6.2-1.6-8-.6v-13z"/><path d="M12 6.2v13"/>',
+    role: '<path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/><path d="M12 7.4l1.2 2.5 2.8.4-2 1.9.5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-1.9 2.8-.4L12 7.4z" fill="currentColor" stroke="none"/>',
+    guidelines: '<path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/><path d="M8.6 11.6l2.3 2.3 4.4-4.6"/>',
+    authority: '<path d="M3 9.2 12 4l9 5.2"/><path d="M4.3 9.6V20M19.7 9.6V20"/><path d="M7.6 9.6V20M11 9.6V20M13 9.6V20M16.4 9.6V20"/><path d="M3 20h18"/>',
+    population: '<rect x="3" y="9.5" width="18" height="10" rx="1.5"/><path d="M8.2 9.5V6.8A1.8 1.8 0 0 1 10 5h4a1.8 1.8 0 0 1 1.8 1.8v2.7"/><path d="M3 14h18"/>'
+  };
+  function svgIcon(name) {
+    return '<svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICN[name] + "</svg>";
+  }
+
   function initMobileMenu() {
     var toggle = document.getElementById("nav-toggle");
     var menu = document.getElementById("mobile-menu");
     if (!toggle || !menu) return;
     var root = rootPath();
     var items = [
-      { href: root + "index.html", label: "🏠 בית" },
-      { href: root + "quick-ref.html", label: "📌 מדריך מהיר" },
-      { href: root + "acronyms.html", label: "📖 מילון קיצורים" },
+      { href: root + "index.html", label: svgIcon("home") + " בית" },
+      { href: root + "quick-ref.html", label: svgIcon("pin") + " מדריך מהיר" },
+      { href: root + "acronyms.html", label: svgIcon("theory") + " מילון קיצורים" },
       { divider: "תמציות" },
-      { href: root + "digests/role.html", label: "🎖️ תפקיד קצין ההסברה" },
-      { href: root + "digests/theory.html", label: "📚 עקרונות ותורת ההסברה" },
-      { href: root + "digests/guidelines.html", label: "🛡️ הנחיות ומדיניות" },
-      { href: root + "digests/authority.html", label: "🏛️ הרשות המקומית" },
-      { href: root + "digests/population.html", label: "🧰 מערך האוכלוסייה וכלים" },
+      { href: root + "digests/role.html", label: svgIcon("role") + " תפקיד קצין ההסברה" },
+      { href: root + "digests/theory.html", label: svgIcon("theory") + " עקרונות ותורת ההסברה" },
+      { href: root + "digests/guidelines.html", label: svgIcon("guidelines") + " הנחיות ומדיניות" },
+      { href: root + "digests/authority.html", label: svgIcon("authority") + " הרשות המקומית" },
+      { href: root + "digests/population.html", label: svgIcon("population") + " מערך האוכלוסייה וכלים" },
     ];
     menu.innerHTML = items.map(function (it) {
       if (it.divider) return '<div class="mobile-menu-divider">' + it.divider + "</div>";
