@@ -714,7 +714,7 @@ main { padding: 36px 0 60px; }
   position: absolute;
   inset: 0;
   background: var(--orange);
-  clip-path: polygon(0% 50%, 70% 0%, 70% 35%, 100% 35%, 100% 65%, 70% 65%, 70% 100%);
+  clip-path: polygon(100% 50%, 30% 0%, 30% 35%, 0% 35%, 0% 65%, 30% 65%, 30% 100%);
 }
 @media (max-width: 720px) {
   .chain-flow { flex-direction: column; align-items: stretch; }
@@ -722,7 +722,7 @@ main { padding: 36px 0 60px; }
     width: 14px;
     height: 22px;
     align-self: center;
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
     margin: -4px 0;
   }
 }
