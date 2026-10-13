@@ -6,7 +6,7 @@
 
 - `index.html`, `quick-ref.html`, `acronyms.html` - עמודי שער
 - `digests/` - 5 עמודי סיכום מאוחדים (נקודת הכניסה המומלצת)
-- `topics/` - ארכיון 16 המצגות המקוריות, שקף אחרי שקף
+- `topics/` - ארכיון 17 המצגות המקוריות, שקף אחרי שקף
 - `content-source/` - התמלולים הגולמיים (Markdown) שמהם נוצרים עמודי `topics/`
 - `assets/` - CSS ו-JS
 - `build.py` - מייצר את `topics/*.html` ו-`index.html` מתוך `content-source/*.md`. הרצה: `python3 build.py`
