@@ -752,6 +752,52 @@ main { padding: 36px 0 60px; }
 }
 .table-scroll.compact table, table.compact { min-width: 460px; }
 
+/* טבלת 4 המדרגים ב"מדריך המהיר" - חייבת להתאים למסך בלי גלילה אופקית,
+   בדסקטופ ובמובייל כאחד. בדסקטופ/טאבלט: טבלה רגילה עם table-layout קבוע
+   כדי שהעמודות יתחלקו ברוחב הזמין ויגלשו לשורה חדשה במקום להרחיב את
+   הטבלה. במובייל צר: מתהפכת לכרטיסים מוערמים (כל שורה = כרטיס, עם
+   data-label לפני כל ערך) כדי שהתוכן הצפוף יישאר קריא. */
+.levels-table { overflow: visible; }
+.levels-table table {
+  table-layout: fixed;
+  width: 100%;
+  min-width: 0;
+}
+.levels-table th:first-child, .levels-table td:first-child { width: 17%; }
+.levels-table th, .levels-table td { white-space: normal; word-break: break-word; vertical-align: top; }
+@media (max-width: 560px) {
+  .levels-table table, .levels-table thead, .levels-table tbody, .levels-table th, .levels-table td, .levels-table tr {
+    display: block;
+    width: auto;
+  }
+  .levels-table thead { display: none; }
+  .levels-table tr {
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .levels-table tr:last-child { margin-bottom: 0; }
+  .levels-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .levels-table td:last-child { border-bottom: none; }
+  .levels-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .levels-table td:first-child {
+    background: var(--blue-light);
+    font-weight: 700;
+  }
+  .levels-table td:first-child::before { content: none; }
+}
+
 .table-scroll.scrollable::after {
   content: "";
   position: absolute;
