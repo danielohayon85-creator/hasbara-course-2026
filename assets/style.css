@@ -18,6 +18,7 @@
   --green: #2e8b57;
   --red: #c0392b;
   --yellow: #d4a017;
+  --tl-orange: #d9730d; /* כתום אמיתי למדרג ההתגוננות - לא --orange/--orange-dark שהם זהב המותג */
   --radius: 10px;
   --shadow: 0 1px 3px rgba(14, 31, 56, 0.08), 0 1px 2px rgba(14, 31, 56, 0.06);
   --shadow-lg: 0 8px 24px rgba(14, 31, 56, 0.12);
@@ -886,7 +887,7 @@ main { padding: 36px 0 60px; }
   font-weight: 600;
 }
 .tl-red { background: var(--red); }
-.tl-orange { background: var(--orange-dark); }
+.tl-orange { background: var(--tl-orange); }
 .tl-yellow { background: var(--yellow); color: #3a2c00; }
 .tl-green { background: var(--green); }
 
