@@ -413,8 +413,29 @@ INDEX_TEMPLATE = """<!doctype html>
 </div>
 
 <main class="container">
-  <h2 class="section-title" id="digests"><span class="n">{icon_star}</span>התחילו כאן: חמש סיכומים</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">לכל סיכום 2-4 מצגות מקור, מאוחדות לעמוד אחד קצר וממוקד, עם קישור למקורות המלאים בתחתית העמוד.</p>
+  <h2 class="section-title" id="howto">{icon_compass} איך להשתמש באתר</h2>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כבר עברתם את הקורס? האתר בנוי לרענון ולחיפוש מהיר, לא ללימוד מאפס - תלוי מה אתם צריכים עכשיו:</p>
+  <div class="use-grid">
+    <a class="use-card" href="#digests">
+      <span class="icon">{icon_use_digest}</span>
+      <span><h4>סיכומים לפי נושא</h4><p>רענון ממוקד על תחום שלם - 5-10 דקות לנושא, בלי לחפור במצגת המקור.</p></span>
+    </a>
+    <a class="use-card" href="quick-ref.html">
+      <span class="icon">{icon_use_quickref}</span>
+      <span><h4>מדריך מהיר</h4><p>טבלאות, מדרגים וצ'קליסטים - לבדיקה מהירה ברגע האמת, לפני או בזמן אירוע.</p></span>
+    </a>
+    <a class="use-card" href="#archive">
+      <span class="icon">{icon_use_archive}</span>
+      <span><h4>ארכיון מצגות המקור</h4><p>שכחתם פרט, נתון מדויק או צריכים ציטוט מהמקור? כל שקף, כמו שהוא.</p></span>
+    </a>
+    <a class="use-card" href="quiz.html">
+      <span class="icon">{icon_use_quiz}</span>
+      <span><h4>מבחן תרגול</h4><p>לבדוק שזה עדיין אצלכם - שאלות ידע ומקרי בוחן, מסוננות לפי נושא.</p></span>
+    </a>
+  </div>
+
+  <h2 class="section-title" id="digests"><span class="n">{icon_star}</span>חמישה סיכומים</h2>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">לכל סיכום 2-4 מצגות מקור, מאוחדות לעמוד אחד קצר וממוקד, עם קישור למקורות המלאים בתחתית העמוד. אין סדר קריאה מחייב - קפצו לנושא שאתם צריכים.</p>
   <div class="cards-grid">
     {digest_cards}
   </div>
@@ -428,7 +449,7 @@ INDEX_TEMPLATE = """<!doctype html>
   </a>
 
   <h2 class="section-title" id="archive" style="margin-top:56px;">{icon_book2} ארכיון מצגות המקור</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">14 המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, אימות ציטוט מדויק או הכנת שיעור. לקריאה ראשונה מומלץ להתחיל בסיכומים שלמעלה.</p>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כל {n_docs} המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, אימות ציטוט מדויק או הכנת שיעור. לרענון שוטף עדיף להשתמש בחמשת הסיכומים למעלה.</p>
   {categories}
 </main>
 
@@ -514,6 +535,11 @@ def write_index(categories, cat_docs, n_docs):
         icon_star=icon("star", size="13px"),
         icon_star_badge=icon("star", size="14px"),
         icon_book2=icon("theory"),
+        icon_compass=icon("compass", size="15px"),
+        icon_use_digest=icon("checkcircle"),
+        icon_use_quickref=icon("pin"),
+        icon_use_archive=icon("clipboard"),
+        icon_use_quiz=icon("quiz"),
     )
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(html)

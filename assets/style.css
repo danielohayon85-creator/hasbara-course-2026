@@ -895,6 +895,67 @@ main { padding: 36px 0 60px; }
 }
 .topic-nav-footer a:hover { text-decoration: none; background: var(--orange-dark); color: #fff; }
 
+/* ===== "איך להשתמש באתר" - 4 כרטיסי אוריינטציה בדף הבית ===== */
+.use-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+  margin: 14px 0 44px;
+}
+.use-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--blue-light);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--border);
+  transition: transform .15s, box-shadow .15s;
+}
+.use-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); text-decoration: none; }
+.use-card .icon {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.use-card .icon .icn { width: 17px; height: 17px; }
+.use-card h4 { margin: 0 0 3px; font-size: 0.96rem; color: var(--navy); }
+.use-card p { margin: 0; font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ===== כפתור "בחנו את עצמכם" בסוף עמוד סיכום ===== */
+.digest-quiz-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 20px 26px;
+  margin-top: 34px;
+}
+.digest-quiz-cta p { margin: 0; color: #fff; font-size: 0.97rem; }
+.digest-quiz-cta p b { color: var(--orange); }
+.digest-quiz-cta a {
+  flex: 0 0 auto;
+  background: var(--orange);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 11px 22px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.digest-quiz-cta a:hover { text-decoration: none; background: #d6a648; }
+
 /* ===== Quick reference page ===== */
 .qr-grid {
   display: grid;

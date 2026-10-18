@@ -46,6 +46,27 @@
       explain: 'קצין ההסברה במחוז מחזיק ומתקף תיק נתונים מחוזי כללי ברמת ניתוח אוכלוסייה מאקרו, בעוד שהיקל"ר מדייק את תמונת המצב ברמה המקומית הספציפית.'
     },
     {
+      cat: "role", type: "concept",
+      q: 'מהו ההבדל המהותי בין "דוברות" ל"הסברה"?',
+      options: ['אין הבדל אמיתי - זה אותו תפקיד בשני שמות', 'דוברות מכוונת למיצוב ואמון הציבור בצה"ל; הסברה מכוונת להצלת חיים באמצעות הנעה להתנהגות לפי הנחיות פיקוד העורף', 'דוברות עוסקת רק ברשתות חברתיות, הסברה רק בטלוויזיה', 'דוברות היא תפקיד של קצין הסברה ביקל"ר'],
+      correct: 1,
+      explain: 'דוברות עוסקת במיצוב התודעה ובחיזוק אמון הציבור והלגיטימציה לפעולות צה"ל; הסברה עוסקת בהנעת הציבור האזרחי להתנהגות מצילת חיים לפי הנחיות פיקוד העורף. אלו שתי מערכות שונות לגמרי, עם מטרות שונות ודרכי פעולה שונות.'
+    },
+    {
+      cat: "role", type: "scenario",
+      q: 'עיתונאי פונה לקצין הסברה ביקל"ר ומבקש תגובה על אירוע ביטחוני שקרה הלילה ברשות. מה הפעולה הנכונה?',
+      options: ['למסור תגובה קצרה וזהירה, כי זה עניין ציבורי', 'להפנות את העיתונאי לדובר צה"ל ולא למסור תגובה עצמאית', 'להתייעץ עם דובר הרשות ולענות יחד איתו לעיתונאי', 'להתעלם מהפנייה לגמרי'],
+      correct: 1,
+      explain: 'קצין הסברה אינו דובר צה"ל ואינו מוסמך להתראיין בשם הצבא או למסור תגובה לתקשורת - גם לא ברשתות חברתיות. פנייה מעיתונאי מחייבת הפניה לדובר צה"ל, לעולם לא תגובה עצמאית.'
+    },
+    {
+      cat: "role", type: "concept",
+      q: 'מי מוסמך להתראיין או להתבטא בתפקיד/במדים מול עיתונאים?',
+      options: ['כל קצין הסברה, בכפוף לשיקול דעתו', 'רק מי שקיבל אישור מפורש מדובר צה"ל', 'רק קציני מחוז ומעלה', 'כל מי שמחזיק תעודת עיתונאי צבאי'],
+      correct: 1,
+      explain: 'כלל הברזל: אין להתראיין או להתבטא בתפקיד או במדים עם עיתונאים ללא אישור דובר צה"ל - גם ברשתות חברתיות. הכלל חל על כל דרג, כולל קציני הסברה.'
+    },
+    {
       cat: "theory", type: "concept",
       q: 'לפי "המעגל הזהוב" (Golden Circle), מאיזו שאלה יש להתחיל כדי לבנות הסברה אפקטיבית?',
       options: ['"מה" - מה אנחנו עושים', '"איך" - איך אנחנו עושים את זה', '"למה" - למה אנחנו עושים את זה', 'אין סדר מועדף, הכול נכתב יחד'],
@@ -208,6 +229,15 @@
 
     var state = { questions: [], current: 0, score: 0, answered: false, byCat: {} };
 
+    function startWithCats(cats) {
+      var pool = QUESTIONS.filter(function (q) { return cats.indexOf(q.cat) !== -1; });
+      state.questions = shuffle(pool).map(shuffleOptions);
+      state.current = 0;
+      state.score = 0;
+      state.byCat = {};
+      renderQuestion();
+    }
+
     function renderStart() {
       root.innerHTML = "";
       var box = el("div", { class: "qr-card" });
@@ -232,12 +262,7 @@
       startBtn.addEventListener("click", function () {
         var cats = Object.keys(selected).filter(function (k) { return selected[k]; });
         if (!cats.length) { cats = Object.keys(CATEGORIES); }
-        var pool = QUESTIONS.filter(function (q) { return cats.indexOf(q.cat) !== -1; });
-        state.questions = shuffle(pool).map(shuffleOptions);
-        state.current = 0;
-        state.score = 0;
-        state.byCat = {};
-        renderQuestion();
+        startWithCats(cats);
       });
       box.appendChild(startBtn);
       root.appendChild(box);
@@ -324,7 +349,18 @@
       root.appendChild(box);
     }
 
-    renderStart();
+    var urlCat = null;
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var catParam = params.get("cat");
+      if (catParam && CATEGORIES[catParam]) urlCat = catParam;
+    } catch (e) { /* no-op */ }
+
+    if (urlCat) {
+      startWithCats([urlCat]);
+    } else {
+      renderStart();
+    }
   }
 
   document.addEventListener("DOMContentLoaded", initQuiz);
