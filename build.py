@@ -440,19 +440,11 @@ INDEX_TEMPLATE = """<!doctype html>
     </a>
   </div>
 
-  <h2 class="section-title" id="digests"><span class="n">{icon_star}</span>חמישה סיכומים</h2>
-  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">לכל סיכום 2-4 מצגות מקור, מאוחדות לעמוד אחד קצר וממוקד, עם קישור למקורות המלאים בתחתית העמוד. אין סדר קריאה מחייב - קפצו לנושא שאתם צריכים.</p>
+  <h2 class="section-title" id="digests"><span class="n">{icon_star}</span>חמישה סיכומים, ישר לעניין</h2>
+  <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כל סיכום מרכז 2-4 מצגות מקור לעמוד אחד קצר וממוקד - בלי מים, עם קישור למקור המלא בתחתית הדף לרגעים שצריך לדייק. אין סדר קריאה מחייב - קפצו ישר לנושא שאתם צריכים.</p>
   <div class="digest-grid">
     {digest_cards}
   </div>
-
-  <a class="spotlight-card" href="topics/03.html">
-    <div class="spotlight-badge">{icon_star_badge} הרצאה מומלצת</div>
-    <h3>הסברה בחירום - אתגרים והנעה לפעולה</h3>
-    <p class="spotlight-author">סא"ל (במיל') שירן שמחי</p>
-    <p class="spotlight-desc">מודל מובנה בארבע שאלות להנעה לפעולה - מי קהל היעד, מה הצרכים, מה המסר ואילו ערוצי הפצה - עם דוגמאות אמיתיות מהשטח, שכונה אחר שכונה.</p>
-    <span class="spotlight-link">צפו בהרצאה המלאה ←</span>
-  </a>
 
   <h2 class="section-title" id="archive" style="margin-top:56px;">{icon_book2} ארכיון מצגות המקור</h2>
   <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">כל {n_docs} המצגות המקוריות, שקף אחרי שקף - לעיון מעמיק, אימות ציטוט מדויק או הכנת שיעור. לרענון שוטף עדיף להשתמש בחמשת הסיכומים למעלה.</p>
