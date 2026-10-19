@@ -76,8 +76,55 @@ img { max-width: 100%; }
 }
 
 header.site-header {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
   color: #fff;
+}
+
+/* ===== כותרת המותג - פס עליון נפרד מסרגלי הכלים ===== */
+.brand-band {
+  background: var(--navy);
+  text-align: center;
+  padding: 22px 20px 18px;
+}
+.brand-band .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+}
+.brand-band .badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--orange-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.85rem;
+  letter-spacing: 0.01em;
+}
+.brand-sub {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: var(--orange);
+}
+
+/* ===== סרגל כלים - חיפוש, ניווט ===== */
+.toolbar {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 20px;
+  flex-wrap: wrap;
 }
 
 .cat-tabs {
@@ -107,55 +154,13 @@ header.site-header {
 .cat-tabs a:hover { background: rgba(255,255,255,0.1); color: #fff; text-decoration: none; }
 .cat-tabs a.active { background: var(--orange-dark); color: #fff; }
 
-.site-header .bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 0;
-  flex-wrap: wrap;
-}
-
-/* מרכוז הלוגו: מעל 640px הלוגו ממורכז אבסולוטית ביחס לכותרת, בעוד
-   הניווט וחיפוש השטח נשארים בשני הקצוות - כך שהוא ממורכז בפועל
-   ולא רק "באמצע הרווח שנשאר". במובייל (מתחת ל-640px) נשאר במקומו
-   הרגיל בתזרים הרגיל, לצד כפתור התפריט. */
-@media (min-width: 900px) {
-  .site-header .bar { position: relative; }
-  .site-header .bar .brand {
-    position: absolute;
-    right: 50%;
-    transform: translateX(50%);
-  }
-}
-
 .brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   font-weight: 700;
   font-size: 1.1rem;
   color: #fff;
-}
-
-.brand .badge {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: var(--orange-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  flex-shrink: 0;
-}
-.brand .badge svg { width: 19px; height: 19px; }
-
-.brand small {
-  display: block;
-  font-weight: 400;
-  font-size: 0.72rem;
-  color: #c7d4e4;
 }
 
 nav.main-nav {
@@ -165,25 +170,26 @@ nav.main-nav {
 }
 
 nav.main-nav a {
-  color: #dbe6f3;
+  color: var(--navy);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 0.92rem;
+  font-weight: 600;
   white-space: nowrap;
 }
 
 nav.main-nav a:hover, nav.main-nav a.active {
-  background: rgba(255,255,255,0.12);
-  color: #fff;
+  background: var(--blue-light);
+  color: var(--navy);
   text-decoration: none;
 }
 
 .nav-toggle {
   display: none;
   order: -1;
-  background: rgba(255,255,255,0.12);
+  background: var(--blue-light);
   border: none;
-  color: #fff;
+  color: var(--navy);
   font-size: 1.25rem;
   line-height: 1;
   width: 40px;
@@ -192,7 +198,7 @@ nav.main-nav a:hover, nav.main-nav a.active {
   cursor: pointer;
   flex-shrink: 0;
 }
-.nav-toggle:hover { background: rgba(255,255,255,0.22); }
+.nav-toggle:hover { background: var(--border); }
 
 .mobile-menu {
   display: none;
@@ -229,10 +235,11 @@ nav.main-nav a:hover, nav.main-nav a.active {
 @media (max-width: 640px) {
   nav.main-nav { display: none !important; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
-  .site-header .bar { gap: 10px; padding: 10px 0; }
-  .brand { font-size: 0.98rem; gap: 8px; }
-  .brand .badge { width: 30px; height: 30px; font-size: 1.05rem; }
-  .brand small { font-size: 0.66rem; }
+  .toolbar { gap: 10px; padding: 10px 16px; }
+  .brand-band { padding: 18px 16px 14px; }
+  .brand-band .badge { width: 34px; height: 34px; }
+  .brand-text { font-size: 1.4rem; }
+  .brand-sub { font-size: 0.72rem; }
   .search-box { flex-basis: 100%; order: 3; min-width: 0; }
   .cat-tabs a { font-size: 0.78rem; padding: 6px 11px; }
 }
@@ -246,14 +253,14 @@ nav.main-nav a:hover, nav.main-nav a.active {
   width: 100%;
   padding: 9px 14px;
   border-radius: 20px;
-  border: none;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
   font-size: 0.9rem;
 }
 
-.search-box input::placeholder { color: #c7d4e4; }
-.search-box input:focus { outline: 2px solid var(--orange); background: #fff; color: var(--text); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-box input:focus { outline: 2px solid var(--orange); border-color: var(--orange); }
 
 #search-results {
   position: absolute;
@@ -395,6 +402,50 @@ main { padding: 36px 0 60px; }
   margin-bottom: 4px;
 }
 .card .icon .icn { width: 21px; height: 21px; vertical-align: 0; }
+
+/* ===== חמשת כרטיסי הסיכומים בדף הבית - סגנון בהיר/תפעולי ===== */
+.digest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin: 0 0 28px;
+}
+.digest-card {
+  background: var(--card-bg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: background .15s;
+}
+.digest-card:hover { text-decoration: none; background: var(--blue-light); }
+.digest-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.digest-card-icon {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--navy);
+}
+.digest-card-icon .icn { width: 22px; height: 22px; }
+.digest-card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.02em;
+}
+.digest-card h3 { margin: 0; font-size: 1.05rem; color: var(--navy); }
+.digest-card p { margin: 0; font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+.digest-card-link { font-size: 0.86rem; font-weight: 700; color: var(--orange-dark); margin-top: 6px; }
+.digest-card:hover .digest-card-link { color: var(--navy); }
 
 /* ספוט מיוחד - הדגשת הרצאה נבחרת מעל הארכיון הרגיל */
 .spotlight-card {

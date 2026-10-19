@@ -116,11 +116,18 @@ def header_html(root, active_cat=None):
     )
     return f"""<div class="site-head-wrap">
 <header class="site-header">
-  <div class="container bar">
+  <div class="brand-band">
     <a class="brand" href="{root}index.html">
-      <span class="badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/><path d="M12 7.4l1.2 2.5 2.8.4-2 1.9.5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-1.9 2.8-.4L12 7.4z" fill="currentColor" stroke="none"/></svg></span>
-      <span>המסבירון<br><small>קורס קציני הסברה 2026</small></span>
+      <span class="badge"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/><path d="M12 7.4l1.2 2.5 2.8.4-2 1.9.5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-1.9 2.8-.4L12 7.4z" fill="currentColor" stroke="none"/></svg></span>
+      <span class="brand-text">המסבירון</span>
     </a>
+    <div class="brand-sub">קורס קציני הסברה 2026</div>
+  </div>
+  <div class="container toolbar">
+    <div class="search-box">
+      <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
+      <div id="search-results"></div>
+    </div>
     <nav class="main-nav">
       <a href="{root}index.html">בית</a>
       <a href="{root}quick-ref.html">מדריך מהיר</a>
@@ -128,10 +135,6 @@ def header_html(root, active_cat=None):
       <a href="{root}quiz.html">מבחן תרגול</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
-    <div class="search-box">
-      <input id="site-search" type="text" placeholder='חיפוש באתר... (למשל: ממ"ד, מדרג כתום, קה"א)' autocomplete="off">
-      <div id="search-results"></div>
-    </div>
   </div>
 </header>
 <nav class="cat-tabs"><div class="inner">
@@ -388,7 +391,7 @@ INDEX_TEMPLATE = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Crect%20width%3D%2724%27%20height%3D%2724%27%20rx%3D%275%27%20fill%3D%27%230e1f38%27/%3E%3Cpath%20d%3D%27M12%203.6%2018.4%206V11c0%204.3-2.8%207.3-6.4%208.7C8.4%2018.3%205.6%2015.3%205.6%2011V6L12%203.6z%27%20fill%3D%27none%27%20stroke%3D%27%23c0922f%27%20stroke-width%3D%271.3%27/%3E%3Cpath%20d%3D%27M12%207.8l1%202.1%202.3.3-1.7%201.6.4%202.3-2-1.1-2%201.1.4-2.3-1.7-1.6%202.3-.3%201-2.1z%27%20fill%3D%27%23c0922f%27/%3E%3C/svg%3E">
 <title>המסבירון - קורס קציני הסברה 2026</title>
 <meta name="description" content="המסבירון - אתר הידע הפנימי לקורס קציני הסברה 2026 - עקרונות הסברה, הנחיות מצילות חיים, מדיניות ההתגוננות, מבנה הרשות המקומית ומערך האוכלוסייה.">
@@ -439,7 +442,7 @@ INDEX_TEMPLATE = """<!doctype html>
 
   <h2 class="section-title" id="digests"><span class="n">{icon_star}</span>חמישה סיכומים</h2>
   <p style="color:var(--text-muted);margin-top:-8px;max-width:760px;">לכל סיכום 2-4 מצגות מקור, מאוחדות לעמוד אחד קצר וממוקד, עם קישור למקורות המלאים בתחתית העמוד. אין סדר קריאה מחייב - קפצו לנושא שאתם צריכים.</p>
-  <div class="cards-grid">
+  <div class="digest-grid">
     {digest_cards}
   </div>
 
@@ -476,13 +479,14 @@ CARD_TEMPLATE = """<a class="card-link-wrap" href="topics/{id}.html" style="text
 </div>
 </a>"""
 
-DIGEST_CARD_TEMPLATE = """<a class="card-link-wrap" href="{url}" style="text-decoration:none;color:inherit;">
-<div class="card" style="border-right:4px solid var(--orange);">
-  <div class="icon">{icon}</div>
+DIGEST_CARD_TEMPLATE = """<a class="digest-card" href="{url}">
+  <div class="digest-card-top">
+    <span class="digest-card-icon">{icon}</span>
+    <span class="digest-card-num">{num}</span>
+  </div>
   <h3>{title}</h3>
   <p>{desc}</p>
-  <span class="card-link">קרא את הסיכום ←</span>
-</div>
+  <span class="digest-card-link">קרא את הסיכום ←</span>
 </a>"""
 
 
@@ -521,8 +525,9 @@ def write_index(categories, cat_docs, n_docs):
 """)
 
     digest_cards = "\n".join(
-        DIGEST_CARD_TEMPLATE.format(url=d["url"], icon=icon(d["icon"]), title=d["title"], desc=d["desc"])
-        for d in DIGESTS
+        DIGEST_CARD_TEMPLATE.format(url=d["url"], icon=icon(d["icon"]), title=d["title"], desc=d["desc"],
+                                     num=f"{idx:02d}")
+        for idx, d in enumerate(DIGESTS, start=1)
     )
 
     html = INDEX_TEMPLATE.format(
