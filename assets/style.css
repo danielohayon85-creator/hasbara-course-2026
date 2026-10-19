@@ -406,11 +406,17 @@ main { padding: 36px 0 60px; }
 /* ===== חמשת כרטיסי הסיכומים בדף הבית - סגנון בהיר/תפעולי ===== */
 .digest-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
   margin: 0 0 28px;
+}
+@media (min-width: 1040px) {
+  .digest-grid { grid-template-columns: repeat(5, 1fr); }
+  .digest-card { padding: 18px 16px; }
+  .digest-card h3 { font-size: 0.98rem; }
+  .digest-card p { font-size: 0.82rem; }
 }
 .digest-card {
   background: var(--card-bg);
