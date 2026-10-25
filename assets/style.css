@@ -332,6 +332,10 @@ main { padding: 36px 0 60px; }
   display: flex;
   align-items: center;
   gap: 10px;
+  scroll-margin-top: 246px;
+}
+@media (max-width: 640px) {
+  .section-title { scroll-margin-top: 266px; }
 }
 
 .section-title .n {
@@ -701,14 +705,17 @@ main { padding: 36px 0 60px; }
   margin: 34px 0 12px;
   padding-right: 12px;
   border-right: 4px solid var(--orange);
-  scroll-margin-top: 132px;
+  scroll-margin-top: 246px;
 }
 
 .topic-content h3 {
   color: var(--navy-light);
   font-size: 1.08rem;
   margin: 22px 0 8px;
-  scroll-margin-top: 132px;
+  scroll-margin-top: 246px;
+}
+@media (max-width: 640px) {
+  .topic-content h2, .topic-content h3 { scroll-margin-top: 266px; }
 }
 
 .topic-content p { margin: 10px 0; }
@@ -724,6 +731,17 @@ main { padding: 36px 0 60px; }
   color: var(--navy);
 }
 .topic-content hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+.inference-note {
+  display: inline-block;
+  margin: 2px 0 12px;
+  padding: 4px 10px;
+  background: #fdf6e8;
+  border: 1px dashed var(--orange-dark);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
 
 /* תרשים שרשרת פיקוד - מחליף את הטקסט "A ← B ← C" השטוח בתצוגה גרפית */
 .chain-flow {
