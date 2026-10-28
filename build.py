@@ -407,7 +407,6 @@ INDEX_TEMPLATE = """<!doctype html>
     <div class="stats">
       <div class="stat"><b>5</b><span>סיכומים מאוחדים</span></div>
       <div class="stat"><b>{n_docs}</b><span>מצגות מקור בארכיון</span></div>
-      <div class="stat"><b>{n_sections}</b><span>סעיפים לחיפוש</span></div>
     </div>
     <div class="quicklinks">
       <a href="quick-ref.html">{icon_pin} מדריך מהיר</a>
