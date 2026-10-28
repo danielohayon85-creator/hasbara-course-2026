@@ -41,7 +41,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: "Segoe UI", "Arial Hebrew", "Heebo", Arial, sans-serif;
+  font-family: "Assistant", "Segoe UI", "Arial Hebrew", Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   direction: rtl;
