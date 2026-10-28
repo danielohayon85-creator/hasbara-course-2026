@@ -132,7 +132,7 @@ def header_html(root, active_cat=None):
       <a href="{root}index.html">בית</a>
       <a href="{root}quick-ref.html">מדריך מהיר</a>
       <a href="{root}acronyms.html">מילון קיצורים</a>
-      <a href="{root}quiz.html">מבחן תרגול</a>
+      <a href="{root}quiz.html">בחן את עצמך</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
   </div>
@@ -436,7 +436,7 @@ INDEX_TEMPLATE = """<!doctype html>
     </a>
     <a class="use-card" href="quiz.html">
       <span class="icon">{icon_use_quiz}</span>
-      <span><h4>מבחן תרגול</h4><p>לבדוק שזה עדיין אצלכם - שאלות ידע ומקרי בוחן, מסוננות לפי נושא.</p></span>
+      <span><h4>בחן את עצמך</h4><p>בוחן קצר שמתחדש כל שבוע, או תרגול חופשי לפי נושא - שאלות ידע ומקרי בוחן.</p></span>
     </a>
   </div>
 

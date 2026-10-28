@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Crect%20width%3D%2724%27%20height%3D%2724%27%20rx%3D%275%27%20fill%3D%27%230e1f38%27/%3E%3Cpath%20d%3D%27M12%203.6%2018.4%206V11c0%204.3-2.8%207.3-6.4%208.7C8.4%2018.3%205.6%2015.3%205.6%2011V6L12%203.6z%27%20fill%3D%27none%27%20stroke%3D%27%23c0922f%27%20stroke-width%3D%271.3%27/%3E%3Cpath%20d%3D%27M12%207.8l1%202.1%202.3.3-1.7%201.6.4%202.3-2-1.1-2%201.1.4-2.3-1.7-1.6%202.3-.3%201-2.1z%27%20fill%3D%27%23c0922f%27/%3E%3C/svg%3E">
-<title>מבחן תרגול | המסבירון - קורס קציני הסברה 2026</title>
-<meta name="description" content="מבחן תרגול אינטראקטיבי בשאלות רב-ברירתיות - גם ידע ומושגים וגם יישום בפועל של תורת ההסברה דרך מקרי בוחן.">
+<title>בחן את עצמך | המסבירון - קורס קציני הסברה 2026</title>
+<meta name="description" content="בוחן שבועי קצר שמתחדש כל שבוע, ותרגול חופשי לפי קטגוריה בשאלות רב-ברירתיות - גם ידע ומושגים וגם יישום בפועל של תורת ההסברה דרך מקרי בוחן.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body data-root="./">
@@ -30,7 +30,7 @@
       <a href="index.html">בית</a>
       <a href="quick-ref.html">מדריך מהיר</a>
       <a href="acronyms.html">מילון קיצורים</a>
-      <a href="quiz.html" class="active">מבחן תרגול</a>
+      <a href="quiz.html" class="active">בחן את עצמך</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="תפריט" aria-expanded="false">☰</button>
   </div>
@@ -46,12 +46,22 @@
 <nav class="mobile-menu" id="mobile-menu"></nav>
 
 <main class="container">
-  <div class="breadcrumb"><a href="index.html">בית</a> ← מבחן תרגול</div>
+  <div class="breadcrumb"><a href="index.html">בית</a> ← בחן את עצמך</div>
 
-  <h1 style="color:var(--navy);font-size:1.7rem;border-bottom:3px solid var(--orange);padding-bottom:14px;"><svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.8 2.8 0 1 1 3.8 2.6c-.7.3-1 .8-1 1.6"/><circle cx="12" cy="17" r="0.9" fill="currentColor" stroke="none"/></svg> מבחן תרגול</h1>
-  <p style="color:var(--text-muted);max-width:760px;">שאלות רב-ברירתיות לבדיקה עצמית - לא רק הגדרות ומושגים, אלא גם יישום בפועל של תורת ההסברה דרך מקרי בוחן מהשטח: מה הייתם עושים במצב נתון? כל שאלה כוללת הסבר קצר מיד אחרי התשובה.</p>
+  <h1 style="color:var(--navy);font-size:1.7rem;border-bottom:3px solid var(--orange);padding-bottom:14px;"><svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.8 2.8 0 1 1 3.8 2.6c-.7.3-1 .8-1 1.6"/><circle cx="12" cy="17" r="0.9" fill="currentColor" stroke="none"/></svg> בחן את עצמך</h1>
+  <p style="color:var(--text-muted);max-width:760px;">שני מצבים: בוחן קצר שמתחדש כל שבוע, או תרגול חופשי לפי קטגוריה בכל זמן שתרצו. כל שאלה כוללת הסבר קצר מיד אחרי התשובה - לא רק הגדרות ומושגים, אלא גם יישום בפועל דרך מקרי בוחן מהשטח.</p>
 
-  <div id="quiz-app"></div>
+  <div class="mode-tabs" role="tablist">
+    <button type="button" class="mode-tab" data-target="week" role="tab"><span class="tag">חדש</span> בוחן השבוע</button>
+    <button type="button" class="mode-tab" data-target="free" role="tab">תרגול חופשי לפי קטגוריה</button>
+  </div>
+
+  <div class="quiz-panel" data-panel="week">
+    <div id="quiz-week-app"></div>
+  </div>
+  <div class="quiz-panel" data-panel="free">
+    <div id="quiz-app"></div>
+  </div>
 </main>
 
 <footer class="site-footer">
@@ -60,6 +70,7 @@
   </div>
 </footer>
 <script src="assets/app.js"></script>
+<script src="self-quiz/weeks.js"></script>
 <script src="assets/quiz.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// מבחן תרגול - קורס קציני הסברה 2026
+// מבחן תרגול ובוחן השבוע - קורס קציני הסברה 2026
 (function () {
   var CATEGORIES = {
     role: "תפקיד קצין ההסברה",
@@ -223,53 +223,22 @@
     return e;
   }
 
-  function initQuiz() {
-    var root = document.getElementById("quiz-app");
-    if (!root) return;
+  // מנוע מבחן גנרי - משותף למצב "תרגול חופשי" ולמצב "בוחן השבוע",
+  // כל אחד עם ה-root ו-state משלו (כדי ששני המצבים יוכלו לדור זה לצד זה באותו עמוד).
+  function makeQuizEngine(root) {
+    var state = { questions: [], current: 0, score: 0, byCat: {} };
+    var opts = {};
 
-    var state = { questions: [], current: 0, score: 0, answered: false, byCat: {} };
-
-    function startWithCats(cats) {
-      var pool = QUESTIONS.filter(function (q) { return cats.indexOf(q.cat) !== -1; });
-      state.questions = shuffle(pool).map(shuffleOptions);
+    function start(questions, options) {
+      opts = options || {};
+      state.questions = shuffle(questions).map(shuffleOptions);
       state.current = 0;
       state.score = 0;
       state.byCat = {};
       renderQuestion();
     }
 
-    function renderStart() {
-      root.innerHTML = "";
-      var box = el("div", { class: "qr-card" });
-      var title = el("h3", {}, "בחרו נושאים למבחן");
-      box.appendChild(title);
-      var chipsWrap = el("div", { class: "quiz-chips", id: "quiz-chips" });
-      var selected = {};
-      Object.keys(CATEGORIES).forEach(function (key) {
-        selected[key] = true;
-        var chip = el("button", { type: "button", class: "quiz-chip active", "data-cat": key }, CATEGORIES[key]);
-        chip.addEventListener("click", function () {
-          selected[key] = !selected[key];
-          chip.classList.toggle("active", selected[key]);
-        });
-        chipsWrap.appendChild(chip);
-      });
-      box.appendChild(chipsWrap);
-      var p = el("p", { style: "color:var(--text-muted);font-size:0.88rem;margin-top:14px;" },
-        "המבחן כולל שאלות ידע וגם שאלות יישום (מקרי בוחן) - מה הייתם עושים בפועל במצב נתון.");
-      box.appendChild(p);
-      var startBtn = el("button", { type: "button", class: "quiz-start-btn" }, "התחילו מבחן");
-      startBtn.addEventListener("click", function () {
-        var cats = Object.keys(selected).filter(function (k) { return selected[k]; });
-        if (!cats.length) { cats = Object.keys(CATEGORIES); }
-        startWithCats(cats);
-      });
-      box.appendChild(startBtn);
-      root.appendChild(box);
-    }
-
     function renderQuestion() {
-      state.answered = false;
       var q = state.questions[state.current];
       root.innerHTML = "";
 
@@ -285,8 +254,8 @@
       q.options.forEach(function (opt, idx) {
         var btn = el("button", { type: "button", class: "quiz-option" }, opt);
         btn.addEventListener("click", function () {
-          if (state.answered) return;
-          state.answered = true;
+          if (optsWrap.classList.contains("answered")) return;
+          optsWrap.classList.add("answered");
           var correct = idx === q.correct;
           if (correct) state.score++;
           if (!state.byCat[q.cat]) state.byCat[q.cat] = { correct: 0, total: 0 };
@@ -329,24 +298,72 @@
       box.appendChild(el("h3", {}, "התוצאה שלכם"));
       box.appendChild(el("div", { class: "quiz-score" }, state.score + " / " + total + '<span class="quiz-pct">(' + pct + "%)</span>"));
 
-      var table = el("table", { class: "compact" });
-      var thead = el("thead", {}, "<tr><th>נושא</th><th>תשובות נכונות</th></tr>");
-      table.appendChild(thead);
-      var tbody = el("tbody");
-      Object.keys(state.byCat).forEach(function (cat) {
-        var row = state.byCat[cat];
-        var tr = el("tr", {}, "<td>" + CATEGORIES[cat] + "</td><td>" + row.correct + " / " + row.total + "</td>");
-        tbody.appendChild(tr);
-      });
-      table.appendChild(tbody);
-      var tableScroll = el("div", { class: "table-scroll" });
-      tableScroll.appendChild(table);
-      box.appendChild(tableScroll);
+      if (opts.showCatBreakdown) {
+        var table = el("table", { class: "compact" });
+        var thead = el("thead", {}, "<tr><th>נושא</th><th>תשובות נכונות</th></tr>");
+        table.appendChild(thead);
+        var tbody = el("tbody");
+        Object.keys(state.byCat).forEach(function (cat) {
+          var row = state.byCat[cat];
+          var tr = el("tr", {}, "<td>" + CATEGORIES[cat] + "</td><td>" + row.correct + " / " + row.total + "</td>");
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        var tableScroll = el("div", { class: "table-scroll" });
+        tableScroll.appendChild(table);
+        box.appendChild(tableScroll);
+      }
 
-      var retryBtn = el("button", { type: "button", class: "quiz-start-btn" }, "נסו שוב ←");
-      retryBtn.addEventListener("click", renderStart);
+      var retryBtn = el("button", { type: "button", class: "quiz-start-btn" }, opts.restartLabel || "נסו שוב ←");
+      retryBtn.addEventListener("click", function () {
+        if (opts.onRestart) opts.onRestart();
+      });
       box.appendChild(retryBtn);
       root.appendChild(box);
+    }
+
+    return { start: start };
+  }
+
+  // ===== מצב "תרגול חופשי לפי קטגוריה" (קיים, ללא שינוי בתפקוד) =====
+  function initFreePractice() {
+    var root = document.getElementById("quiz-app");
+    if (!root) return null;
+    var engine = makeQuizEngine(root);
+
+    function renderStart() {
+      root.innerHTML = "";
+      var box = el("div", { class: "qr-card" });
+      var title = el("h3", {}, "בחרו נושאים למבחן");
+      box.appendChild(title);
+      var chipsWrap = el("div", { class: "quiz-chips", id: "quiz-chips" });
+      var selected = {};
+      Object.keys(CATEGORIES).forEach(function (key) {
+        selected[key] = true;
+        var chip = el("button", { type: "button", class: "quiz-chip active", "data-cat": key }, CATEGORIES[key]);
+        chip.addEventListener("click", function () {
+          selected[key] = !selected[key];
+          chip.classList.toggle("active", selected[key]);
+        });
+        chipsWrap.appendChild(chip);
+      });
+      box.appendChild(chipsWrap);
+      var p = el("p", { style: "color:var(--text-muted);font-size:0.88rem;margin-top:14px;" },
+        "המבחן כולל שאלות ידע וגם שאלות יישום (מקרי בוחן) - מה הייתם עושים בפועל במצב נתון.");
+      box.appendChild(p);
+      var startBtn = el("button", { type: "button", class: "quiz-start-btn" }, "התחילו מבחן");
+      startBtn.addEventListener("click", function () {
+        var cats = Object.keys(selected).filter(function (k) { return selected[k]; });
+        if (!cats.length) { cats = Object.keys(CATEGORIES); }
+        startWithCats(cats);
+      });
+      box.appendChild(startBtn);
+      root.appendChild(box);
+    }
+
+    function startWithCats(cats) {
+      var pool = QUESTIONS.filter(function (q) { return cats.indexOf(q.cat) !== -1; });
+      engine.start(pool, { showCatBreakdown: true, onRestart: renderStart, restartLabel: "נסו שוב ←" });
     }
 
     var urlCat = null;
@@ -361,7 +378,116 @@
     } else {
       renderStart();
     }
+
+    return { hasUrlCat: !!urlCat };
   }
 
-  document.addEventListener("DOMContentLoaded", initQuiz);
+  // ===== מצב "בוחן השבוע" =====
+  function getCurrentWeek(weeks) {
+    if (!weeks || !weeks.length) return null;
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var best = null;
+    weeks.forEach(function (w) {
+      var d = new Date(w.date + "T00:00:00");
+      if (d <= today && (!best || d > new Date(best.date + "T00:00:00"))) best = w;
+    });
+    if (!best) {
+      best = weeks.slice().sort(function (a, b) { return new Date(a.date) - new Date(b.date); })[0];
+    }
+    return best;
+  }
+
+  function formatDateRange(startDateStr) {
+    var start = new Date(startDateStr + "T00:00:00");
+    var end = new Date(start.getTime() + 6 * 24 * 60 * 60 * 1000);
+    function fmt(d) {
+      var dd = String(d.getDate()).padStart(2, "0");
+      var mm = String(d.getMonth() + 1).padStart(2, "0");
+      return dd + "." + mm;
+    }
+    return fmt(start) + " - " + fmt(end) + "." + end.getFullYear();
+  }
+
+  function initSelfQuizWeek() {
+    var root = document.getElementById("quiz-week-app");
+    if (!root) return;
+    var weeks = window.SELF_QUIZ_WEEKS || [];
+    var week = getCurrentWeek(weeks);
+    var engine = makeQuizEngine(root);
+
+    function renderIntro() {
+      root.innerHTML = "";
+      if (!week) {
+        root.appendChild(el("div", { class: "qr-card" }, "<p>בוחן השבוע עדיין לא פורסם. חזרו בקרוב.</p>"));
+        return;
+      }
+      var cats = [];
+      week.questions.forEach(function (q) { if (cats.indexOf(q.cat) === -1) cats.push(q.cat); });
+      var hasScenario = week.questions.some(function (q) { return q.type === "scenario"; });
+
+      var card = el("div", { class: "week-card" });
+      card.appendChild(el("span", { class: "week-date-pill" },
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>שבוע ' + formatDateRange(week.date)));
+      card.appendChild(el("h2", {}, "בוחן השבוע" + (week.title ? ": " + week.title : "")));
+      card.appendChild(el("p", { class: "lede" },
+        week.questions.length + " שאלות, מיקס קטגוריות" + (hasScenario ? " + תרחיש מהשטח" : "") + ". בשבוע הבא - בוחן חדש לגמרי."));
+
+      var meta = el("div", { class: "week-meta" });
+      meta.appendChild(el("span", { class: "week-meta-item" },
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>כ-<b>' + Math.max(2, Math.round(week.questions.length * 0.7)) + '</b> דקות'));
+      meta.appendChild(el("span", { class: "week-meta-item" },
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 7-7"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10"/></svg><b>' + week.questions.length + '</b> שאלות'));
+      if (hasScenario) {
+        meta.appendChild(el("span", { class: "week-meta-item" },
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.6 19.6 5.4V11c0 4.9-3.2 8.4-7.6 10-4.4-1.6-7.6-5.1-7.6-10V5.4L12 2.6z"/></svg>כולל תרחיש שטח'));
+      }
+      card.appendChild(meta);
+
+      var catsWrap = el("div", { class: "week-cats" });
+      cats.forEach(function (c) { catsWrap.appendChild(el("span", { class: "week-cat-chip" }, CATEGORIES[c])); });
+      card.appendChild(catsWrap);
+
+      var startBtn = el("button", { type: "button", class: "week-start-btn" },
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l14 8-14 8V4z" fill="currentColor" stroke="none"/></svg>התחילו את בוחן השבוע');
+      startBtn.addEventListener("click", function () {
+        engine.start(week.questions, { showCatBreakdown: false, onRestart: renderIntro, restartLabel: "חזרה לבוחן השבוע ←" });
+      });
+      card.appendChild(startBtn);
+      root.appendChild(card);
+
+      root.appendChild(el("p", { class: "week-footnote" },
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>בוחן חדש מתפרסם כל שבוע ומחליף את הקודם - אין חזרה אוטומטית על שאלות משבוע שעבר.'));
+    }
+
+    renderIntro();
+  }
+
+  // ===== מעבר בין הטאבים "בוחן השבוע" / "תרגול חופשי" =====
+  function initModeTabs(defaultTarget) {
+    var tabs = document.querySelectorAll(".mode-tab");
+    if (!tabs.length) return;
+    function activate(target) {
+      tabs.forEach(function (t) {
+        var on = t.getAttribute("data-target") === target;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      document.querySelectorAll(".quiz-panel").forEach(function (p) {
+        p.hidden = p.getAttribute("data-panel") !== target;
+      });
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () { activate(t.getAttribute("data-target")); });
+    });
+    activate(defaultTarget);
+  }
+
+  function init() {
+    var freeState = initFreePractice();
+    if (document.getElementById("quiz-week-app")) {
+      initSelfQuizWeek();
+      initModeTabs(freeState && freeState.hasUrlCat ? "free" : "week");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
 })();

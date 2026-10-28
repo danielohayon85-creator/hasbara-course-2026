@@ -612,6 +612,141 @@ main { padding: 36px 0 60px; }
 .quiz-result-card table { text-align: right; margin: 0 auto; }
 .quiz-result-card .quiz-start-btn { margin: 20px auto 0; }
 
+/* ===== בחן את עצמך - טאבים: בוחן השבוע / תרגול חופשי ===== */
+.mode-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 5px;
+  margin: 22px 0 20px;
+  box-shadow: var(--shadow);
+}
+.mode-tab {
+  flex: 1;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 12px 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background .15s, color .15s;
+}
+.mode-tab .tag {
+  font-size: 0.64rem;
+  font-weight: 700;
+  background: var(--blue-light);
+  color: var(--blue);
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+.mode-tab[aria-selected="true"] { background: var(--navy); color: #fff; }
+.mode-tab[aria-selected="true"] .tag { background: var(--orange); color: var(--navy); }
+.mode-tab:not([aria-selected="true"]):hover { background: var(--bg); color: var(--navy); }
+.quiz-panel[hidden] { display: none; }
+
+.week-card {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 16px;
+  padding: 30px 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.week-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 480px 260px at 88% -10%, rgba(192,146,47,.25), transparent 70%);
+}
+.week-date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(192,146,47,.18);
+  border: 1px solid rgba(192,146,47,.45);
+  color: var(--orange);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+  position: relative;
+}
+.week-date-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
+.week-card h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin: 0 0 10px;
+  position: relative;
+  border: none;
+  padding: 0;
+  color: #fff;
+}
+.week-card .lede { color: rgba(255,255,255,.72); font-size: 0.92rem; max-width: 50ch; margin: 0 0 22px; line-height: 1.6; position: relative; }
+.week-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; position: relative; }
+.week-meta-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: rgba(255,255,255,.78); }
+.week-meta-item svg { width: 15px; height: 15px; color: var(--orange); flex-shrink: 0; }
+.week-meta-item b { color: #fff; }
+.week-cats { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 22px; position: relative; }
+.week-cat-chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  color: rgba(255,255,255,.85);
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+.week-start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--orange);
+  color: var(--navy);
+  border: none;
+  border-radius: 10px;
+  padding: 13px 24px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(192,146,47,.35);
+  position: relative;
+}
+.week-start-btn:hover { background: #d6a43b; }
+.week-start-btn svg { width: 16px; height: 16px; }
+
+.week-footnote {
+  margin-top: 14px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.week-footnote svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+@media (max-width: 560px) {
+  .mode-tab { font-size: 0.82rem; padding: 11px 8px; gap: 5px; }
+  .mode-tab .tag { display: none; }
+  .week-card { padding: 22px 18px; }
+  .week-meta { gap: 14px; }
+}
+
 /* ===== מעגל ההסברה (דיאגרמה מעגלית) ===== */
 .hasbara-cycle-wrap { display: flex; justify-content: center; margin: 18px 0; }
 .hasbara-cycle { width: 100%; max-width: 420px; height: auto; }
